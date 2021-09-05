@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import IContacts from 'src/app/models/IContacts';
+import { contacts } from 'src/app/utils/data';
+import { AccountInfo, Payment } from 'src/app/utils/enums';
 
 @Component({
   selector: 'app-header',
@@ -6,16 +9,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  moreInfoPayment = ["Оплата", "Доставка", "Самовызов"];
-
   mainCategories = ["Все акции", "Товары к школе", "Ноутбуки", "Холодильники", "Стиральные машины", "Смартфоны", "Морозильники", "Телевизоры", "Матрасы", "Диваны"];
+
+  payment = Payment;
 
   isPaymentBlockVisible = false;
 
   isContactsVisible = false;
 
-  isAccountVisible = false;
-  constructor() {}
+  isAccountVisible = true;
+
+  contacts: IContacts[];
+
+  accountInfo = AccountInfo;
+
+  constructor() {
+    this.contacts = contacts;
+  }
 
   ngOnInit() {
   }

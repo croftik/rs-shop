@@ -125,6 +125,9 @@ h1 {
     cursor: pointer;
     background-color: #FFFFFF;
   }
+  .img_arrow {
+    margin-left: 5px;
+  }
 }
 
 .input_search {
@@ -198,15 +201,9 @@ h1 {
   }
 }
 
-.contacts:hover {
-  color: #b98400;;
-  background-color: #fffae5b3;
-  cursor: pointer;
-}
-
 .payment-block_more {
   top: 36px;
-  left: 800px;
+  right: 35%;
 }
 
 .contacts-block_more,
@@ -223,10 +220,15 @@ h1 {
 
 .contacts-block_more {
   top: 37px;
-  right: 212px;
+  right: 10%;
   img {
     width: 15px;
     margin-right: 10px;
+  }
+  li:nth-child(n+3):hover {
+    color: #b98400;;
+    background-color: #fffae5b3;
+    cursor: pointer;
   }
   li:last-child {
     padding-left: 46px;
@@ -298,7 +300,7 @@ h1 {
 
 .account-block {
   top: 126px;
-  right: 340px;
+  right: 15%;
   display: flex;
   flex-direction: column;
   align-items: center;
