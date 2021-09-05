@@ -113,6 +113,7 @@ h1 {
 }
 
 .search-block_btn {
+  position: relative;
   width: 36%;
   height: 40px;
   border-radius: 40px;
@@ -178,7 +179,7 @@ h1 {
 
 .contacts-block_more li,
 .payment-block_more li,
-.account-block_more li {
+.account-block_more__list {
   padding: 5px 20px;
 }
 
@@ -218,6 +219,10 @@ h1 {
   z-index: 2;
 }
 
+.account-block {
+  min-width: 270px;
+}
+
 .contacts-block_more {
   top: 37px;
   right: 10%;
@@ -246,10 +251,43 @@ h1 {
 }
 
 .contacts-block_more li,
-.account-block_more li {
+.account-block_more__list {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+
+.account-block_more__list span {
+  width: 80%;
+}
+
+.count-of-goods {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  background-color: #e8a006;
+}
+
+.count-of-goods_number {
+  font-weight: 700;
+  font-size: 11px;
+  color: #FFFFFF;
+}
+
+.goods-in-sc {
+  position: absolute;
+  top: 1px;
+  left: 47px;
+  width: 15px;
+  height: 15px;
+}
+
+.number-in-sc {
+  font-size: 9px;
 }
 
 .account-block_more {
@@ -257,23 +295,25 @@ h1 {
   svg {
     margin-right: 5px;
   }
-  li:first-child {
-    margin-bottom: 15px;
-    &::after {
-      content: '';
-      border-top: 1px solid #d7d7d7;
-      width: 182px;
-      position: absolute;
-      top: 163px;
-      left: 23px;
-      pointer-events: none;
-    }
+}
+
+.account-block_more__list:first-child {
+  margin-bottom: 15px;
+  &::after {
+    content: '';
+    border-top: 1px solid #d7d7d7;
+    width: 225px;
+    position: absolute;
+    top: 163px;
+    left: 23px;
+    pointer-events: none;
   }
-  li:hover {
-    color: #b98400;;
-    background-color: #fffae5b3;
-    cursor: pointer;
-  }
+}
+
+.account-block_more__list:hover {
+  color: #b98400;;
+  background-color: #fffae5b3;
+  cursor: pointer;
 }
 
 .user {
