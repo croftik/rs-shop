@@ -12,3 +12,10 @@ export enum AccountInfo {
   Viewed = 'Просмотренные',
   Lists = 'Списки сравнения'
 }
+
+export enum Socials {
+  Vkontakte = '../../../assets/icons/vk.png',
+  Facebook = '../../../assets/icons/facebook.png',
+  Instagram = '../../../assets/icons/instagram.png',
+  Youtube = '../../../assets/icons/youtube.png'
+}

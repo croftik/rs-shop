@@ -21,6 +21,10 @@
       width: 20px;
       margin-right: 5px;
     }
+    &:last-child, 
+    &:nth-child(7) {
+      display: none;
+    }
   }
 }
 

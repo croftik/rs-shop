@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import IContacts from 'src/app/models/IContacts';
+import { contacts } from 'src/app/utils/data';
+import { Socials } from 'src/app/utils/enums';
 
 @Component({
   selector: 'app-footer',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+  contacts: IContacts[];
 
-  constructor() { }
+  socials = Socials;
+
+  constructor() {
+    this.contacts = contacts;
+  }
 
   ngOnInit() {
+    
   }
 
 }

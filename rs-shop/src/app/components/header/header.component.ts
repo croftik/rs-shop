@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
   isContactsVisible = false;
 
-  isAccountVisible = true;
+  isAccountVisible = false;
 
   contacts: IContacts[];
 
