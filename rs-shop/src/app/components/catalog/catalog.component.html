@@ -1,0 +1,14 @@
+<div class="categories-block1">
+  <ul *ngFor="let li of mainCategories">
+    <li>{{li}}</li>
+  </ul>  
+</div>
+<div class="categories-block2">
+  <span class="categories-main-title">Бытовая техника</span>
+  <div class="categories-block3">
+    <span class="categories-title">Крупная техника для кухни</span>
+    <ul *ngFor="let li of kitchen" class="list-of-categories">
+      <li>{{li}}</li>
+    </ul>
+  </div>
+</div>

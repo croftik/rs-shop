@@ -1,0 +1,45 @@
+:host {
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+  width: 1200px;
+  background-color: #FFFFFF;
+  padding-top: 15px;
+}
+
+.categories-block1 {
+  width: 20%;
+  border-right: 1px solid #d7d7d7;
+}
+
+.categories-block2 {
+  width: 80%;
+  padding-left: 50px;
+  padding-top: 20px;
+}
+
+.categories-main-title {
+  font-size: 30px;
+}
+
+.categories-title {
+  font-weight: 700;
+  font-weight: 18px;
+}
+
+.categories-block1 li {
+  padding: 15px;
+  &:hover {
+    color: #b98400;;
+    background-color: #fffae5b3;
+    cursor: pointer;
+  }
+}
+
+.categories-block3 {
+  margin-top: 15px;
+}
+
+.list-of-categories {
+  margin-top: 10px;
+}
