@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import IContacts from 'src/app/models/IContacts';
-import { contacts } from 'src/app/utils/data';
+import { contacts, footerInfo } from 'src/app/utils/data';
 import { Socials } from 'src/app/utils/enums';
 
 @Component({
@@ -13,12 +13,12 @@ export class FooterComponent implements OnInit {
 
   socials = Socials;
 
+  footerInfo = footerInfo;
+
   constructor() {
     this.contacts = contacts;
   }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
 }
