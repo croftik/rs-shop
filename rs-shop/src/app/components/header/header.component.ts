@@ -13,7 +13,6 @@ import { HeaderService } from './header.service';
     trigger('paymentBlock', [
       state('initialPayment', style({ filter: 'opacity(1)' })),
       state('expandedPayment', style({ filter: 'opacity(0.5)' })),
-      transition('initial <=> expanded', animate('0.3s')),
     ]),
     trigger('arrowPayment', [
       state('initialPayment', style({ transform: '0' })),
