@@ -5,19 +5,29 @@ import { Injectable } from '@angular/core';
 })
 export class HeaderService {
 
-  isExpandedPayment: boolean = false;
+  isExpandedPayment: boolean;
 
-  statePayment: string = 'initialPayment';
+  statePayment: string;
 
-  isExpandedContacts: boolean = false;
+  isExpandedContacts: boolean;
 
-  stateContacts: string = 'initialContacts';
+  stateContacts: string;
 
-  isExpandedAccount: boolean = false;
+  isExpandedAccount: boolean;
 
-  stateAccount: string = 'initialAccount';
+  stateAccount: string;
 
-  constructor() {}
+  isLoginFormVisible: boolean;
+
+  constructor() {
+    this.isExpandedContacts = false;
+    this.isExpandedPayment = false;
+    this.isExpandedAccount = false;
+    this.isLoginFormVisible = false;
+    this.stateAccount = 'initialAccount';
+    this.statePayment = 'initialPayment';
+    this.stateContacts = 'initialContacts';
+  }
 
   showPayment() {
     this.isExpandedPayment = !this.isExpandedPayment;
@@ -57,7 +67,14 @@ export class HeaderService {
       this.statePayment = 'initialContacts';
     }
   }
-  
+
+  showLoginForm() {
+    this.isLoginFormVisible = true;
+    if (this.isExpandedAccount) {
+      this.isExpandedAccount = false;
+      this.stateAccount = 'initialContacts';
+    }
+  }
 
 }
 
