@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import IContacts from 'src/app/models/IContacts';
+import IContacts from 'src/app/models/contacts.model';
 import { contacts, footerInfo } from 'src/app/utils/data';
 import { Socials } from 'src/app/utils/enums';
 
