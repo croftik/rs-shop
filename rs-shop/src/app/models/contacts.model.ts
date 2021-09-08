@@ -1,4 +1,4 @@
 export default interface IContacts {
-  name: string,
-  img: string
+  'name': string,
+  'img': string
 }
