@@ -1,7 +1,7 @@
 export const contacts = [
   {
     name: '+375 25 502 10 21',
-    img: '../../../assets/icons/smartphone.png',
+    img: '../../../assets/icons/electronics.png',
     type: 'phone'
   },
   {
@@ -51,4 +51,6 @@ export const footerInfo = [
     subtitle: ["Ремонт техники", "Замена и возврат товара", "Программа «Надежная защита»", "Негарантийный ремонт", "Дополнительные услуги", 
     "Сервисные центры", "Как совершить покупку", "Как использовать промокод", "Помощь в выборе", "Производители"]
   }
-]
+];
+
+export const baseUrl = 'http://localhost:3004';
