@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import IContacts from 'src/app/models/IContacts';
+import IContacts from 'src/app/models/contacts.model';
 import { contacts } from 'src/app/utils/data';
 import { AccountInfo, Payment } from 'src/app/utils/enums';
 import { HeaderService } from './header.service';
@@ -33,6 +33,10 @@ import { HeaderService } from './header.service';
     trigger('arrowAccount', [
       state('initialAccount', style({ transform: '0' })),
       state('expandedAccount', style({ transform: 'rotateX(180deg)' })),
+    ]),
+    trigger('catalog', [
+      state('initialCatalog', style({ filter: 'opacity(1)' })),
+      state('expandedCatalog', style({ filter: 'opacity(0.5)' })),
     ]),
   ],
 })
