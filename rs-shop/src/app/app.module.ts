@@ -15,6 +15,8 @@ import { environment } from 'src/environments/environment';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { GoodsComponent } from './components/goods/goods.component';
 import { OneGoodComponent } from './components/one-good/one-good.component';
+import { FormatPricePipe } from './pipes/format-price/format-price.pipe';
+import { FormatRatingPipe } from './pipes/format-rating/format-rating.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { OneGoodComponent } from './components/one-good/one-good.component';
     CatalogComponent,
     FooterComponent,
     GoodsComponent,
-    OneGoodComponent
+    OneGoodComponent,
+    FormatPricePipe,
+    FormatRatingPipe
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,8 @@ import { OneGoodComponent } from './components/one-good/one-good.component';
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsModule.forRoot([Shop], {
       developmentMode: !environment.production,
-    })
+    }),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
