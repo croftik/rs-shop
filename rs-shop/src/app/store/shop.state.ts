@@ -1,17 +1,23 @@
 import { Injectable } from "@angular/core";
 import { State, Action, StateContext, Selector } from "@ngxs/store";
 import { HttpService } from "../services/http/http.service";
-import { SetCategories, SetCurrentCategory } from "./shop.actions";
+import { SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetGoods } from "./shop.actions";
 import { IState } from "./shop.model";
-import { ICategories } from "../models/categories.model";
+import { ICategories, ISubCategoryName } from "../models/categories.model";
+import { IGoodItem } from "../models/goods.model";
 
 const initialState: IState = {
   categories: [],
   currentCategory: {
-    id: '',
-    name: '',
-    subCategories: []
-  }
+    "id": '',
+    "name": '',
+    "subCategories": []
+  },
+  currentSubCategory: {
+    "en": '',
+    "ru": ''
+  },
+  goods: []
 };
 
 @State<IState>({
@@ -42,5 +48,25 @@ export default class Shop {
   @Selector()
   public static currentCategory(state: IState): ICategories {
     return state.currentCategory;
+  }
+
+  @Action(SetCurrentSubCategory)
+  SetCurrentSubCategory(context : StateContext<IState>, action: SetCurrentSubCategory) {
+    context.patchState({currentSubCategory: action.currentSubCategory})
+  }
+
+  @Selector()
+  public static currentSubCategory(state: IState): ISubCategoryName {
+    return state.currentSubCategory;
+  }
+
+  @Action(SetGoods)
+  SetGoods(context : StateContext<IState>, action: SetGoods) {
+    context.patchState({goods: action.goods})
+  }
+
+  @Selector()
+  public static goods(state: IState): IGoodItem[] {
+    return state.goods;
   }
 }
