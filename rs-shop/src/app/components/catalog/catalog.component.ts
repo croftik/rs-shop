@@ -1,11 +1,9 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { ICategories } from 'src/app/models/categories.model';
-import { HttpService } from 'src/app/services/http/http.service';
-import { SetCategories, SetCurrentCategory } from 'src/app/store/shop.actions';
 import Shop from 'src/app/store/shop.state';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { CatalogService } from './catalog.service';
 
 @Component({

@@ -3,6 +3,7 @@
   position: absolute;
   top: 140px;
   width: 100%;
+  z-index: 2;
 }
 
 .wrapper-catalog {
@@ -58,4 +59,8 @@
 
 .list-of-categories {
   margin-top: 15px;
+  &:hover {
+    cursor: pointer;
+    color: #b98400;
+  }
 }
