@@ -1,0 +1,12 @@
+<div class="wrapper-goods">
+  <div class="wrapper-good" *ngFor="let good of goods$ |async">
+    <img src={{good.imageUrls[0]}} class="img-good">
+    <span class="name-good" title={{good.name}}>{{good.name}}</span>
+    <span class="availability-good" [ngStyle]="{'color': oneGoodService.setColor(good.availableAmount)}">В наличии</span>
+    <span class="price-good">{{good.price | formatPrice}} p.</span>
+    <span class="rating-good">{{good.rating | formatRating}}</span>
+    <button class="btn-cart">В корзину</button>
+    <button class="btn-favourite">В избранное</button>  
+  </div>
+</div>
+

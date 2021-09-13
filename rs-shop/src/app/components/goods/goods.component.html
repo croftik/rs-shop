@@ -1,0 +1,21 @@
+<main>
+  <div class="wrapper-goods">
+  <div class="wrapper-hierarchy">
+    <span class="hierarchy">Главная</span>
+    <img src="../../../assets/icons/down-arrow.png" class="img-hierarchy">
+    <span class="hierarchy">{{goodsService.categoryName}}</span>
+    <img src="../../../assets/icons/down-arrow.png" class="img-hierarchy" *ngIf="goodsService.isSubCategoryPressed">
+    <span class="hierarchy" *ngIf="goodsService.isSubCategoryPressed">{{goodsService.subCategory.ru}}</span>
+  </div>
+  <span class="category-title" *ngIf="!goodsService.isSubCategoryPressed">{{goodsService.categoryName}}</span>
+  <span class="category-title" *ngIf="goodsService.isSubCategoryPressed">{{goodsService.subCategory.ru}}</span>
+  <ul class="wrapper-sorting">
+    <li class="wrapper-sorting_title">Сортировать по:</li>
+    <li>популярности</li>
+    <li>цене</li>
+  </ul>
+  <app-one-good></app-one-good>
+  </div>
+</main>
+
+
