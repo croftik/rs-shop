@@ -1,10 +1,15 @@
 export interface ICategories {
   'id': string,
   'name': string,
-  'subCategories': ISubCategories[]
+  'subCategories': ISubCategory[]
 }
 
-export interface ISubCategories {
+export interface ISubCategory {
   'id': string,
   'name': string
+}
+
+export interface ISubCategoryName {
+  'ru': string,
+  'en': string
 }
