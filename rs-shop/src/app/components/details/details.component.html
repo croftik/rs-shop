@@ -1,0 +1,37 @@
+<main class="main">
+  <div class="wrapper-hierarchy">
+    <span class="hierarchy">Главная</span>
+    <img src="../../../assets/icons/down-arrow.png" class="img-hierarchy">
+    <span class="hierarchy">{{currentCategory}}</span>
+    <img src="../../../assets/icons/down-arrow.png" class="img-hierarchy">
+    <span class="hierarchy">{{currentSubCategory}}</span>
+    <img src="../../../assets/icons/down-arrow.png" class="img-hierarchy">
+  </div>
+  <span class="category-title" *ngFor="let good of currentGood$ | async">{{good.name}}</span>
+  <div class="wrapper-details" *ngFor="let good of currentGood$ | async">
+    <div class="wrapper-images">
+      <div class="wrapper-image">
+        <div class="wrapper-one-image" *ngFor="let image of good.imageUrls">
+          <img src="{{image}}" class="img-small">
+        </div>
+      </div>
+      <div class="wrapper-main-image">
+        <img src="{{good.imageUrls[0]}}">
+      </div>
+    </div>
+    <div class="wrapper-description">
+      <span>Описание товара</span>
+      <p>{{good.description}}</p>
+    </div>
+    <div class="wrapper-info">
+      <div class="availability">
+        <img src="../../../assets/icons/have.png">
+        <span class="availability-good" [ngStyle]="{'color': goodService.setColor(good.availableAmount)}">В наличии</span>
+      </div>
+      <span class="price-good">{{good.price | formatPrice}} p.</span>
+      <span class="rating-good">{{good.rating | formatRating}}</span>
+      <button class="btn-cart">В корзину</button>
+      <button class="btn-favourite">В избранное</button>
+    </div>
+  </div>
+</main>
