@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { State, Action, StateContext, Selector } from "@ngxs/store";
 import { HttpService } from "../services/http/http.service";
-import { SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetGoods } from "./shop.actions";
+import { SetCatalog, SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetDetails, SetGoods } from "./shop.actions";
 import { IState } from "./shop.model";
 import { ICategories, ISubCategoryName } from "../models/categories.model";
 import { IGoodItem } from "../models/goods.model";
@@ -17,7 +17,9 @@ const initialState: IState = {
     "en": '',
     "ru": ''
   },
-  goods: []
+  goods: [],
+  details: [],
+  isCatalogBtnPressed: false
 };
 
 @State<IState>({
@@ -68,5 +70,25 @@ export default class Shop {
   @Selector()
   public static goods(state: IState): IGoodItem[] {
     return state.goods;
+  }
+
+  @Action(SetDetails)
+  SetDetails(context : StateContext<IState>, action: SetDetails) {
+    context.patchState({details: action.details})
+  }
+
+  @Selector()
+  public static details(state: IState): IGoodItem[] {
+    return state.details;
+  }
+
+  @Action(SetCatalog)
+  SetCatalog(context : StateContext<IState>, action: SetCatalog) {
+    context.patchState({isCatalogBtnPressed: action.isCatalogBtnPressed})
+  }
+
+  @Selector()
+  public static isCatalogBtnPressed(state: IState): boolean {
+    return state.isCatalogBtnPressed;
   }
 }

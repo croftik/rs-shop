@@ -5,5 +5,7 @@ export interface IState {
   categories: ICategories[],
   currentCategory: ICategories
   currentSubCategory: ISubCategoryName,
-  goods: IGoodItem[]
+  goods: IGoodItem[],
+  details: IGoodItem[],
+  isCatalogBtnPressed: boolean
 }

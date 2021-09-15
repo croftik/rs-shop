@@ -17,6 +17,16 @@ export class SetCurrentSubCategory {
 }
 
 export class SetGoods {
-  static readonly type = 'shop current goods';
+  static readonly type = 'shop goods';
   constructor(public goods: IGoodItem[]) {}
+}
+
+export class SetDetails {
+  static readonly type = 'shop details';
+  constructor(public details: IGoodItem[]) {}
+}
+
+export class SetCatalog {
+  static readonly type = 'shop is catalog btn pressed';
+  constructor(public isCatalogBtnPressed: boolean) {}
 }
