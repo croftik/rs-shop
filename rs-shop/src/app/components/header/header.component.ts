@@ -1,6 +1,10 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { state, style, trigger } from '@angular/animations';
+import { Component, DoCheck, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
 import IContacts from 'src/app/models/contacts.model';
+import { GoodService } from 'src/app/services/good/good.service';
+import { SetCatalog } from 'src/app/store/shop.actions';
+import Shop from 'src/app/store/shop.state';
 import { contacts } from 'src/app/utils/data';
 import { AccountInfo, Payment } from 'src/app/utils/enums';
 import { HeaderService } from './header.service';
@@ -40,7 +44,7 @@ import { HeaderService } from './header.service';
     ]),
   ],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, DoCheck {
   mainCategories = ["Все акции", "Товары к школе", "Ноутбуки", "Холодильники", "Стиральные машины", "Смартфоны", "Морозильники", "Телевизоры", "Матрасы", "Диваны"];
 
   payment = Payment;
@@ -49,10 +53,21 @@ export class HeaderComponent implements OnInit {
 
   accountInfo = AccountInfo;
 
-  constructor(public headerService: HeaderService) {
+  isCatalogBtnPressed?: boolean;
+
+  constructor(public headerService: HeaderService, public goodService: GoodService, private store: Store) {
     this.contacts = contacts;
   }
 
   ngOnInit() {
+  }
+
+  showCatalog() {
+    this.isCatalogBtnPressed = !this.isCatalogBtnPressed;
+    this.store.dispatch(new SetCatalog(this.isCatalogBtnPressed));
+  }
+
+  ngDoCheck() {
+    this.isCatalogBtnPressed = this.store.selectSnapshot(Shop.isCatalogBtnPressed);
   }
 }

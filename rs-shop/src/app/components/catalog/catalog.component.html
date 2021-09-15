@@ -1,7 +1,7 @@
 <div class="wrapper-catalog">
   <div class="categories-block1">
     <ul class="categories-main">
-      <li id="li_{{category.id}}" *ngFor="let category of mainCategories$ | async" (mouseover)="catalogService.showSubCategories($event)" (click)="catalogService.showGoods()">
+      <li id="li_{{category.id}}" *ngFor="let category of mainCategories$ | async" (mouseover)="catalogService.showSubCategories($event)" (click)="catalogService.showAllGoodsInCategory($event)">
         <img src="../../../assets/icons/{{category.id}}.png" id="img_{{category.id}}">
         <span id="span_{{category.id}}">{{category.name}}</span>
       </li>
@@ -11,7 +11,7 @@
     <span class="categories-main-title">{{currentCategory.name}}</span>
     <div class="categories-block3">
       <ul >
-        <li id="{{subCategories.id}}" class="list-of-categories" *ngFor="let subCategories of currentCategory.subCategories" (click)="catalogService.setSubCategory($event)">{{subCategories.name}}</li>
+        <li id="{{subCategories.id}}" class="list-of-categories" *ngFor="let subCategories of currentCategory.subCategories" (click)="catalogService.showAllGoodsInSubCategory($event)">{{subCategories.name}}</li>
       </ul>
     </div>
   </div>

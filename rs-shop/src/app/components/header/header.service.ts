@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { SetCatalog } from 'src/app/store/shop.actions';
+import Shop from 'src/app/store/shop.state';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +22,7 @@ export class HeaderService {
 
   isLoginFormVisible: boolean;
 
-  isExpandedCatalog: boolean;
-
-  stateCatalog: string;
-
   constructor() {
-    this.isExpandedCatalog = false;
     this.isExpandedContacts = false;
     this.isExpandedPayment = false;
     this.isExpandedAccount = false;
@@ -32,7 +30,6 @@ export class HeaderService {
     this.stateAccount = 'initialAccount';
     this.statePayment = 'initialPayment';
     this.stateContacts = 'initialContacts';
-    this.stateCatalog = 'initialCatalog';
   }
 
   showPayment() {
@@ -81,12 +78,6 @@ export class HeaderService {
       this.stateAccount = 'initialContacts';
     }
   }
-
-  showCatalog() {
-    this.isExpandedCatalog = !this.isExpandedCatalog;
-    this.stateCatalog = this.isExpandedCatalog ? 'expandedCatalog' : 'initialCatalog';
-  }
-
 }
 
 

@@ -52,7 +52,7 @@
         <h1 data-name="Online Shopping">Online Shopping</h1>
       </div>
       
-      <button class="header__btn search-block_btn" (click)="headerService.showCatalog()">
+      <button class="header__btn search-block_btn" (click)="showCatalog()">
         <img src="../../../assets/icons/list.png" class="img_icon-btn">
         Каталог товаров
       </button>
@@ -121,14 +121,7 @@
       </ul>
     </div>
   </div>
-
-  <!-- <div class="location-popup">
-    <div class="location-popup-block">
-      <span>Населенный пункт</span>
-      <span>Вам будут показаны товары, а также условия доставки для выбранного населенного пункта.</span>
-    </div>
-  </div> -->
-  <app-catalog *ngIf="headerService.isExpandedCatalog"></app-catalog>
+  <app-catalog *ngIf="isCatalogBtnPressed"></app-catalog>
   <app-login-form *ngIf="headerService.isLoginFormVisible"></app-login-form>
 </header>
 
