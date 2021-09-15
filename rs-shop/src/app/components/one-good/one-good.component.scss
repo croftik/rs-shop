@@ -5,6 +5,13 @@
 
 .img-good {
   height: 160px;
+  max-width: 300px;
+  &:hover {
+    cursor: pointer;
+    ~ .name-good {
+      text-decoration: underline;
+    }
+  }
 }
 
 .name-good {
@@ -17,6 +24,10 @@
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 
 .availability-good {
