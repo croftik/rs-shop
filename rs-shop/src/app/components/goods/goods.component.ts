@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ICategories, ISubCategoryName } from 'src/app/models/categories.model';
+import { IGoodItem } from 'src/app/models/goods.model';
+import Shop from 'src/app/store/shop.state';
 import { GoodsService } from './goods.service';
 
 @Component({
@@ -6,13 +12,32 @@ import { GoodsService } from './goods.service';
   templateUrl: './goods.component.html',
   styleUrls: ['./goods.component.scss']
 })
-export class GoodsComponent implements OnInit {
+export class GoodsComponent implements OnInit, DoCheck {
 
-  constructor(public goodsService: GoodsService) {
+  category: ICategories;
+
+  categoryName: string = '';
+
+  subCategory: ISubCategoryName;
+
+  isSubCategoryPressed?: boolean;
+
+  constructor(public goodsService: GoodsService, private store: Store) {
+    this.category = this.store.selectSnapshot(Shop.currentCategory);
+    this.categoryName = this.category.name;
+    this.subCategory = this.store.selectSnapshot(Shop.currentSubCategory);
   }
 
   ngOnInit() {
-    this.goodsService.setGoodsInState();
+    
+  }
+
+  ngDoCheck() {
+    this.category = this.store.selectSnapshot(Shop.currentCategory);
+    this.categoryName = this.category.name;
+    this.subCategory = this.store.selectSnapshot(Shop.currentSubCategory);
+    if (this.subCategory.en === '') this.isSubCategoryPressed = false;
+    else this.isSubCategoryPressed = true;
   }
 
 }
