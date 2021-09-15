@@ -1,8 +1,8 @@
 <div class="wrapper-goods">
   <div class="wrapper-good" *ngFor="let good of goods$ |async">
-    <img src={{good.imageUrls[0]}} class="img-good">
-    <span class="name-good" title={{good.name}}>{{good.name}}</span>
-    <span class="availability-good" [ngStyle]="{'color': oneGoodService.setColor(good.availableAmount)}">В наличии</span>
+    <img src={{good.imageUrls[0]}} class="img-good" (click)="openDetailsPage($event)" id="img_{{good.id}}">
+    <span class="name-good" title={{good.name}} (click)="openDetailsPage($event)" id="span_{{good.id}}">{{good.name}}</span>
+    <span class="availability-good" [ngStyle]="{'color': goodService.setColor(good.availableAmount)}">В наличии</span>
     <span class="price-good">{{good.price | formatPrice}} p.</span>
     <span class="rating-good">{{good.rating | formatRating}}</span>
     <button class="btn-cart">В корзину</button>
