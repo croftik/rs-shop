@@ -18,6 +18,7 @@ import { OneGoodComponent } from './components/one-good/one-good.component';
 import { FormatPricePipe } from './pipes/format-price/format-price.pipe';
 import { FormatRatingPipe } from './pipes/format-rating/format-rating.pipe';
 import { DetailsComponent } from './components/details/details.component';
+import { CategoryComponent } from './components/category/category/category.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DetailsComponent } from './components/details/details.component';
     OneGoodComponent,
     FormatPricePipe,
     FormatRatingPipe,
-    DetailsComponent
+    DetailsComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
