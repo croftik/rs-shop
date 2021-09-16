@@ -9,7 +9,7 @@
   </div>
   <span class="category-title" *ngFor="let good of currentGood$ | async">{{good.name}}</span>
   <div class="wrapper-details" *ngFor="let good of currentGood$ | async">
-    <div class="wrapper-images">
+
       <div class="wrapper-image">
         <div class="wrapper-one-image" *ngFor="let image of good.imageUrls">
           <img src="{{image}}" class="img-small">
@@ -18,7 +18,7 @@
       <div class="wrapper-main-image">
         <img src="{{good.imageUrls[0]}}">
       </div>
-    </div>
+
     <div class="wrapper-description">
       <span>Описание товара</span>
       <p>{{good.description}}</p>
