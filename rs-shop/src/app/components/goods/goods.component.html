@@ -4,11 +4,10 @@
       <span class="hierarchy">Главная</span>
       <img src="../../../assets/icons/down-arrow.png" class="img-hierarchy">
       <span class="hierarchy">{{categoryName}}</span>
-      <img src="../../../assets/icons/down-arrow.png" class="img-hierarchy" *ngIf="isSubCategoryPressed">
-      <span class="hierarchy" *ngIf="isSubCategoryPressed">{{subCategory.ru}}</span>
+      <img src="../../../assets/icons/down-arrow.png" class="img-hierarchy">
+      <span class="hierarchy">{{subCategory.ru}}</span>
     </div>
-    <span class="category-title" *ngIf="!isSubCategoryPressed">{{categoryName}}</span>
-    <span class="category-title" *ngIf="isSubCategoryPressed">{{subCategory.ru}}</span>
+    <span class="category-title">{{subCategory.ru}}</span>
     <ul class="wrapper-sorting">
       <li class="wrapper-sorting_title">Сортировать по:</li>
       <li>популярности</li>

@@ -5,11 +5,9 @@
     <span class="hierarchy">{{currentCategory}}</span>
     <img src="../../../assets/icons/down-arrow.png" class="img-hierarchy">
     <span class="hierarchy">{{currentSubCategory}}</span>
-    <img src="../../../assets/icons/down-arrow.png" class="img-hierarchy">
   </div>
   <span class="category-title" *ngFor="let good of currentGood$ | async">{{good.name}}</span>
   <div class="wrapper-details" *ngFor="let good of currentGood$ | async">
-
       <div class="wrapper-image">
         <div class="wrapper-one-image" *ngFor="let image of good.imageUrls">
           <img src="{{image}}" class="img-small">

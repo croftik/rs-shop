@@ -20,8 +20,6 @@ export class GoodsComponent implements OnInit, DoCheck {
 
   subCategory: ISubCategoryName;
 
-  isSubCategoryPressed?: boolean;
-
   constructor(public goodsService: GoodsService, private store: Store) {
     this.category = this.store.selectSnapshot(Shop.currentCategory);
     this.categoryName = this.category.name;
@@ -36,8 +34,6 @@ export class GoodsComponent implements OnInit, DoCheck {
     this.category = this.store.selectSnapshot(Shop.currentCategory);
     this.categoryName = this.category.name;
     this.subCategory = this.store.selectSnapshot(Shop.currentSubCategory);
-    if (this.subCategory.en === '') this.isSubCategoryPressed = false;
-    else this.isSubCategoryPressed = true;
   }
 
 }
