@@ -18,7 +18,8 @@ import { OneGoodComponent } from './components/one-good/one-good.component';
 import { FormatPricePipe } from './pipes/format-price/format-price.pipe';
 import { FormatRatingPipe } from './pipes/format-rating/format-rating.pipe';
 import { DetailsComponent } from './components/details/details.component';
-import { CategoryComponent } from './components/category/category/category.component';
+import { CategoryComponent } from './components/category/category.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CategoryComponent } from './components/category/category/category.compo
     FormatPricePipe,
     FormatRatingPipe,
     DetailsComponent,
-    CategoryComponent
+    CategoryComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
