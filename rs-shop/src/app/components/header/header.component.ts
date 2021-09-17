@@ -1,12 +1,16 @@
 import { state, style, trigger } from '@angular/animations';
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ICategories } from 'src/app/models/categories.model';
 import IContacts from 'src/app/models/contacts.model';
 import { GoodService } from 'src/app/services/good/good.service';
 import { SetCatalog } from 'src/app/store/shop.actions';
 import Shop from 'src/app/store/shop.state';
 import { contacts } from 'src/app/utils/data';
 import { AccountInfo, Payment } from 'src/app/utils/enums';
+import { CatalogService } from '../catalog/catalog.service';
 import { HeaderService } from './header.service';
 
 @Component({
@@ -45,7 +49,7 @@ import { HeaderService } from './header.service';
   ],
 })
 export class HeaderComponent implements OnInit, DoCheck {
-  mainCategories = ["Все акции", "Товары к школе", "Ноутбуки", "Холодильники", "Стиральные машины", "Смартфоны", "Морозильники", "Телевизоры", "Матрасы", "Диваны"];
+  mainCategories$: Observable<ICategories[]>;
 
   payment = Payment;
 
@@ -55,8 +59,11 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   isCatalogBtnPressed?: boolean;
 
-  constructor(public headerService: HeaderService, public goodService: GoodService, private store: Store) {
+  constructor(public headerService: HeaderService, public goodService: GoodService, private store: Store, public catalogService: CatalogService) {
     this.contacts = contacts;
+    this.mainCategories$ = this.store.select(Shop.categories).pipe(
+      map(categories => categories)
+    )
   }
 
   ngOnInit() {
