@@ -7,17 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor() { }
+  isActive: boolean;
+
+  constructor() { 
+    this.isActive = false;
+  }
 
   ngOnInit() {
   }
 
-  onClickSignUp() {
-    //container.classList.add("right-panel-active");
+  showSignInForm() {
+    this.isActive = false;
   }
 
-  onClickSignIn() {
-    //container.classList.remove("right-panel-active");
+  showSignUpForm() {
+    this.isActive = true;
   }
 
 }
