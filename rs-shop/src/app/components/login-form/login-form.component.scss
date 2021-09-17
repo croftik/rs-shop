@@ -2,7 +2,8 @@
 	position: absolute;
 	top: 0;
 	display: flex;
-	align-items: center;
+	align-items: baseline;
+	padding-top: 150px;
 	justify-content: center;
   height: 100%;
   width: 100%;
@@ -42,14 +43,14 @@
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
-  background-color: #e8a006;;
+  background-color: #ffbe31;;
   border: none;
   color: #FFFFFF;
   font-weight: 700;
   border-radius: 40px;
   margin-top: 15px;
   &:hover {
-    background-color: #ffae00;
+    background-color: #e8a006;
     cursor: pointer;
   }
   &:active {

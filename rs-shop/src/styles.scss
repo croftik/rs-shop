@@ -12,4 +12,31 @@ li {
 button,
 input {
   outline: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+.btn-favourite,
+.btn-cart {
+  color: #FFFFFF;
+  width: 50%;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn-favourite {
+  background-color: #ffbe31;
+  &:hover {
+    background-color: #e8a006;
+  }
+}
+
+.btn-cart {
+  background-color: #f53d5d;
+  &:hover {
+    background-color: #e03653;
+  }
 }
