@@ -19,3 +19,11 @@ export enum Socials {
   Instagram = '../../../assets/icons/instagram.png',
   Youtube = '../../../assets/icons/youtube.png'
 }
+
+export enum TableHeader {
+  Good = 'Товар',
+  Description = 'Описание',
+  Quantity = 'Количество',
+  Delivery = 'Доставка',
+  Cost = 'Стоимость'
+}
