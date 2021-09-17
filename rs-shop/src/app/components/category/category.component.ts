@@ -2,7 +2,7 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { ICategories, ISubCategory } from 'src/app/models/categories.model';
 import Shop from 'src/app/store/shop.state';
-import { CatalogService } from '../../catalog/catalog.service';
+import { CatalogService } from '../catalog/catalog.service';
 
 @Component({
   selector: 'app-category',
