@@ -15,6 +15,7 @@
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	position: relative;
 }
 
 .form-title {
@@ -216,4 +217,23 @@ input {
 
 .container.right-panel-active .overlay-right {
 	transform: translateX(20%);
+}
+
+.btn-close {
+	background-color: transparent;
+	border: 1px solid #e8a006;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	z-index: 101;
+	top: -40px;
+	right: -40px;
+	&:hover {
+		background-color: #e8a006;
+	}
+	img {
+		width: 10px;
+		height: 10px;
+	}
 }
