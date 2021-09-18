@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
 import { State, Action, StateContext, Selector } from "@ngxs/store";
 import { HttpService } from "../services/http/http.service";
-import { SetCatalog, SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetDetails, SetGoods } from "./shop.actions";
+import { SetCatalog, SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetDetails, SetGoodId, SetGoods, SetQueryParam, SetSearchResults } from "./shop.actions";
 import { IState } from "./shop.model";
-import { ICategories, ISubCategoryName } from "../models/categories.model";
+import { ICategories, ISubCategory } from "../models/categories.model";
 import { IGoodItem } from "../models/goods.model";
+import { map } from "rxjs/operators";
 
 const initialState: IState = {
   categories: [],
@@ -14,12 +15,27 @@ const initialState: IState = {
     "subCategories": []
   },
   currentSubCategory: {
-    "en": '',
-    "ru": ''
+    "id": '',
+    "name": ''
   },
   goods: [],
-  details: [],
-  isCatalogBtnPressed: false
+  details: {
+    "id": '',
+    "name": '',
+    "imageUrls": [''],
+    "rating": 0,
+    "availableAmount": 0,
+    "price": 0, 
+    "description": '',
+    "isInCart": false,
+    "isFavorite": false,
+    "category": '',
+    "subCategory": ''
+  },
+  isCatalogBtnPressed: false,
+  searchResults: [],
+  queryParam: '',
+  goodId: ''
 };
 
 @State<IState>({
@@ -34,7 +50,7 @@ export default class Shop {
 
   @Action(SetCategories)
   setCategories(context : StateContext<IState>, action: SetCategories) {
-    context.patchState({categories: action.categories})
+    context.patchState({categories: action.categories});
   }
 
   @Selector()
@@ -44,7 +60,7 @@ export default class Shop {
 
   @Action(SetCurrentCategory)
   SetCurrentCategory(context : StateContext<IState>, action: SetCurrentCategory) {
-    context.patchState({currentCategory: action.currentCategory})
+    context.patchState({currentCategory: action.currentCategory});
   }
 
   @Selector()
@@ -54,17 +70,17 @@ export default class Shop {
 
   @Action(SetCurrentSubCategory)
   SetCurrentSubCategory(context : StateContext<IState>, action: SetCurrentSubCategory) {
-    context.patchState({currentSubCategory: action.currentSubCategory})
+    context.patchState({currentSubCategory: action.currentSubCategory});
   }
 
   @Selector()
-  public static currentSubCategory(state: IState): ISubCategoryName {
+  public static currentSubCategory(state: IState): ISubCategory {
     return state.currentSubCategory;
   }
 
   @Action(SetGoods)
   SetGoods(context : StateContext<IState>, action: SetGoods) {
-    context.patchState({goods: action.goods})
+    context.patchState({goods: action.goods});
   }
 
   @Selector()
@@ -74,21 +90,57 @@ export default class Shop {
 
   @Action(SetDetails)
   SetDetails(context : StateContext<IState>, action: SetDetails) {
-    context.patchState({details: action.details})
+    context.patchState({details: action.details});
   }
 
   @Selector()
-  public static details(state: IState): IGoodItem[] {
+  public static details(state: IState): IGoodItem {
     return state.details;
   }
 
   @Action(SetCatalog)
   SetCatalog(context : StateContext<IState>, action: SetCatalog) {
-    context.patchState({isCatalogBtnPressed: action.isCatalogBtnPressed})
+    context.patchState({isCatalogBtnPressed: action.isCatalogBtnPressed});
   }
 
   @Selector()
   public static isCatalogBtnPressed(state: IState): boolean {
     return state.isCatalogBtnPressed;
+  }
+
+  @Action(SetSearchResults)
+  SetSearchResults(context : StateContext<IState>, action: SetSearchResults) {
+    context.patchState({searchResults: action.searchResults});
+  }
+
+  @Selector()
+  public static searchResults(state: IState): IGoodItem[] {
+    return state.searchResults;
+  }
+  
+  @Action(SetQueryParam)
+  setQueryParam(context: StateContext<IState>, action: SetQueryParam) {
+    context.patchState({queryParam: action.queryParam});
+    return this.httpService.getData(`goods/search?text=${action.queryParam}`).pipe(
+      map((goods: any) => context.dispatch(new SetSearchResults(goods))),
+    );
+  }
+
+  @Selector()
+  public static queryParam(state: IState): string {
+    return state.queryParam;
+  }
+
+  @Action(SetGoodId)
+  SetGoodId(context: StateContext<IState>, action: SetGoodId) {
+    context.patchState({goodId: action.goodId});
+    return this.httpService.getData(`goods/item/${action.goodId}`).pipe(
+      map((good: any) => context.dispatch(new SetDetails(good))),
+    );
+  }
+
+  @Selector()
+  public static goodId(state: IState): string {
+    return state.goodId;
   }
 }

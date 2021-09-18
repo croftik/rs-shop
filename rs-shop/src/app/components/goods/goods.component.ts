@@ -2,7 +2,7 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ICategories, ISubCategoryName } from 'src/app/models/categories.model';
+import { ICategories, ISubCategory } from 'src/app/models/categories.model';
 import { IGoodItem } from 'src/app/models/goods.model';
 import Shop from 'src/app/store/shop.state';
 import { GoodsService } from './goods.service';
@@ -18,14 +18,11 @@ export class GoodsComponent implements OnInit, DoCheck {
 
   categoryName: string = '';
 
-  subCategory: ISubCategoryName;
+  subCategory: ISubCategory;
 
   constructor(public goodsService: GoodsService, private store: Store) {}
 
-  ngOnInit() {
-    this.category = this.store.selectSnapshot(Shop.currentCategory);
-    this.categoryName = this.category.name;
-    this.subCategory = this.store.selectSnapshot(Shop.currentSubCategory);    
+  ngOnInit() {  
   }
 
   ngDoCheck() {

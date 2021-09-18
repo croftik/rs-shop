@@ -18,8 +18,6 @@ export class CategoryComponent implements OnInit, DoCheck {
   constructor(private store: Store, public catalogService: CatalogService) {}
 
   ngOnInit() {
-    this.category = this.store.selectSnapshot(Shop.currentCategory);
-    this.subCategories = this.category.subCategories;
   }
 
   ngDoCheck() {

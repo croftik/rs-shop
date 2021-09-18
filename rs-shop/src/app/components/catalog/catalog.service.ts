@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
+import { ICategories, ISubCategory } from 'src/app/models/categories.model';
 import { HttpService } from 'src/app/services/http/http.service';
 import { SetCatalog, SetCurrentCategory, SetCurrentSubCategory, SetGoods } from 'src/app/store/shop.actions';
 import Shop from 'src/app/store/shop.state';
@@ -14,38 +15,25 @@ export class CatalogService {
 
   constructor(private store: Store, private router: Router, private httpService: HttpService) { }
 
-  setNewCurrentCategory(event: Event) {
-    const id = <string>(<HTMLElement>(event.target)).id.split('_')[1];
-    const newCurrentCategory = this.store.selectSnapshot(Shop.categories).filter(category => category.id === id)[0];
+  setNewCurrentCategory(newCategory: ICategories) {
+    const newCurrentCategory = this.store.selectSnapshot(Shop.categories).filter(category => category.id === newCategory.id)[0];
     this.store.dispatch(new SetCurrentCategory(newCurrentCategory));
   }
 
-  showSubCategoriesInCategory(event: Event) {
-    const category = <string>(<HTMLElement>(event.target)).id.split('_')[1];
-    this.setNewCurrentCategory(event);
-    this.setGoodsInState();
+  showSubCategoriesInCategory(category: ICategories) {
+    this.setNewCurrentCategory(category);
     this.putAwayCatalog();
-    this.router.navigate([`${category}`]);
+    this.router.navigate([`${category.id}`]);
   }
 
-  showAllGoodsInSubCategory(event: Event) {
-    this.subCategory = <string>(<HTMLElement>(event.target)).id.split('_')[1];
-    const ruName = <string>(<HTMLElement>(event.target)).textContent;
-    this.store.dispatch(new SetCurrentSubCategory({
-      'en': this.subCategory, 
-      'ru': ruName
-    }));
-    const category = this.store.selectSnapshot(Shop.currentCategory).id;
-    this.setGoodsInState();
+  showAllGoodsInSubCategory(subCategory: ISubCategory) {
+    this.store.dispatch(new SetCurrentSubCategory(subCategory));
+    const categoryId = this.store.selectSnapshot(Shop.currentCategory).id;
     this.putAwayCatalog();
-    this.router.navigate([`${category}/${this.subCategory}`]);
-  }
-
-  setGoodsInState() {
-    const newCurrentCategory = this.store.selectSnapshot(Shop.currentCategory);
-    this.httpService.getData(`goods/category/${newCurrentCategory.id}/${this.subCategory}`).subscribe((data:any) => {
+    this.httpService.getData(`goods/category/${categoryId}/${subCategory.id}`).subscribe((data:any) => {
       this.store.dispatch(new SetGoods(data));
     });
+    this.router.navigate([`${categoryId}/${subCategory.id}`]);
   }
 
   putAwayCatalog() {

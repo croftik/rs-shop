@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { ICategories, ISubCategoryName } from 'src/app/models/categories.model';
 import { IGoodItem } from 'src/app/models/goods.model';
 import { GoodService } from 'src/app/services/good/good.service';
 import Shop from 'src/app/store/shop.state';
@@ -12,9 +9,9 @@ import Shop from 'src/app/store/shop.state';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, DoCheck {
 
-  currentGood$: Observable<IGoodItem[]>;
+  currentGood$: IGoodItem;
 
   currentCategory: string = '';
 
@@ -23,10 +20,12 @@ export class DetailsComponent implements OnInit {
   constructor(private store: Store, public goodService: GoodService) {}
 
   ngOnInit() {
-    this.currentGood$ = this.store.select(Shop.details).pipe(
-      map(data => data)
-    );
     this.currentCategory = this.store.selectSnapshot(Shop.currentCategory).name;
-    this.currentSubCategory = this.store.selectSnapshot(Shop.currentSubCategory).ru;
+    this.currentSubCategory = this.store.selectSnapshot(Shop.currentSubCategory).name;
   }
+
+  ngDoCheck() {
+    this.currentGood$ = this.store.selectSnapshot(Shop.details);
+  }
+
 }
