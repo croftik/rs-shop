@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
+import { HttpService } from 'src/app/services/http/http.service';
+import { SetQueryParam, SetSearchResults } from 'src/app/store/shop.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +23,7 @@ export class HeaderService {
 
   isLoginFormVisible: boolean;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private httpService: HttpService, private store: Store) {
     this.isExpandedContacts = false;
     this.isExpandedPayment = false;
     this.isExpandedAccount = false;
@@ -83,6 +86,10 @@ export class HeaderService {
 
   navigateToMainPage() {
     this.router.navigate(['']);
+  }
+
+  searchGoods(value: string) {
+    this.store.dispatch(new SetQueryParam(value));
   }
 }
 

@@ -57,11 +57,12 @@
         Каталог товаров
       </button>
       
-      <label class="label_search">
+      <form class="form_search" [formGroup]="formForSearchGoods">
         <img src="../../../assets/icons/search.png" class="img_icon-input">
-        <input placeholder="Поиск товаров" class="input_search">
-      </label>
+        <input placeholder="Поиск товаров" class="input_search" formControlName="searchInput">
+      </form>
       
+      <app-search-goods></app-search-goods>
       
       <button class="header__btn search-block_btn" (click)="headerService.showAccountInfo()" [@accountBlock]="headerService.stateAccount">
         <img src="../../../assets/icons/sign-in.png" class="img_icon-btn">
@@ -117,7 +118,7 @@
   <div class="main-categories-block">
     <div class="main-categories-block_wrapper">
       <ul *ngFor="let category of mainCategories$ | async">
-        <li id="li_{{category.id}}" (click)="catalogService.showSubCategoriesInCategory($event)">{{category.name}}</li>
+        <li (click)="catalogService.showSubCategoriesInCategory(category)">{{category.name}}</li>
       </ul>
     </div>
   </div>

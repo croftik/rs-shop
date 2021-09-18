@@ -1,8 +1,9 @@
 import { state, style, trigger } from '@angular/animations';
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 import { ICategories } from 'src/app/models/categories.model';
 import IContacts from 'src/app/models/contacts.model';
 import { GoodService } from 'src/app/services/good/good.service';
@@ -48,7 +49,7 @@ import { HeaderService } from './header.service';
     ]),
   ],
 })
-export class HeaderComponent implements OnInit, DoCheck {
+export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
   mainCategories$: Observable<ICategories[]>;
 
   payment = Payment;
@@ -57,16 +58,33 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   accountInfo = AccountInfo;
 
-  isCatalogBtnPressed?: boolean;
+  formForSearchGoods: FormGroup;
+
+  isCatalogBtnPressed: boolean;
+
+  private unsubscribe$ = new Subject();
 
   constructor(public headerService: HeaderService, public goodService: GoodService, private store: Store, public catalogService: CatalogService) {
     this.contacts = contacts;
-    this.mainCategories$ = this.store.select(Shop.categories).pipe(
-      map(categories => categories)
-    )
   }
 
   ngOnInit() {
+    this.formForSearchGoods = new FormGroup({
+      searchInput: new FormControl('', Validators.required),
+    });
+
+    this.mainCategories$ = this.store.select(Shop.categories).pipe(
+      map(categories => categories)
+    );
+    
+    this.formForSearchGoods.controls.searchInput.valueChanges.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      takeUntil(this.unsubscribe$),
+    )
+      .subscribe((value: string) => {
+        if (value.length >= 2) this.headerService.searchGoods(value);
+      });
   }
 
   showCatalog() {
@@ -76,5 +94,10 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   ngDoCheck() {
     this.isCatalogBtnPressed = this.store.selectSnapshot(Shop.isCatalogBtnPressed);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

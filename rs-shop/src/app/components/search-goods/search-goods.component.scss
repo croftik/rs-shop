@@ -1,0 +1,59 @@
+:host {
+  position: absolute;
+  z-index: 5;
+  display: block;
+  left: 463px;
+  top: 115px;
+}
+
+.search-results {
+  background-color: #ffffff;
+  width: 450px;
+  max-height: 600px;
+  overflow: hidden;
+  padding: 0px 5px;
+  box-shadow: 0 2px 4px rgb(23 35 38 / 5%);
+  li:last-child {
+    border: none;
+  }
+}
+
+.search-results__good {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #d7d7d7;
+  &:hover {
+    cursor: pointer;
+    border: 1px solid #c63e1f;
+    border-radius: 5px;
+  }
+}
+
+.search-results__info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.search-results__info_name {
+  color: #e44a61;
+  text-decoration: underline;
+}
+
+.search-results__info_price {
+  color: #000000;
+}
+
+.search-results__wrapper-img {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.search-results__wrapper {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

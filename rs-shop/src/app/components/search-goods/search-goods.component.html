@@ -1,0 +1,11 @@
+<ul class="search-results">
+  <li class="search-results__good" *ngFor="let good of searchResults$ | async" (click)="searchGoodsService.navigateToDetailsPage(good)">
+    <div class="search-results__wrapper">
+      <img src="{{good.imageUrls[0]}}" class="search-results__wrapper-img">
+    </div>
+    <div class="search-results__info">
+      <span class="search-results__info_name">{{good.name}}</span>
+      <span class="search-results__info_price">{{good.price | formatPrice}} p.</span>
+    </div>
+  </li>
+</ul>

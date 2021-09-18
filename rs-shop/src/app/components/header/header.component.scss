@@ -90,9 +90,6 @@
 
 .logo-block {
   display: flex;
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 .img_logo {
@@ -150,7 +147,7 @@ h1 {
   }
 }
 
-.label_search {
+.form_search {
   position: relative;
   width: 100%;
   margin-left: 15px;

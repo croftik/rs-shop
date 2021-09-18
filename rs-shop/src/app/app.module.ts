@@ -20,6 +20,8 @@ import { FormatRatingPipe } from './pipes/format-rating/format-rating.pipe';
 import { DetailsComponent } from './components/details/details.component';
 import { CategoryComponent } from './components/category/category.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SearchGoodsComponent } from './components/search-goods/search-goods.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     FormatRatingPipe,
     DetailsComponent,
     CategoryComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    SearchGoodsComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     NgxsModule.forRoot([Shop], {
       developmentMode: !environment.production,
     }),
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
