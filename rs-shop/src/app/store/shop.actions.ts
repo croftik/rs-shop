@@ -45,3 +45,14 @@ export class SetGoodId {
   static readonly type = 'shop good id';
   constructor(public goodId: string) {}
 }
+
+export class SetSortingType {
+  static readonly type = 'shop sort';
+
+  constructor(public sortingType: string) {}
+}
+export class SetDirectionOfSort {
+  static readonly type = 'shop sorting direction';
+
+  constructor(public directionOfSort: boolean) {}
+}

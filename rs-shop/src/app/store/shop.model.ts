@@ -10,5 +10,7 @@ export interface IState {
   isCatalogBtnPressed: boolean,
   searchResults: IGoodItem[],
   queryParam: string,
-  goodId: string
+  goodId: string,
+  typeOfSorting: string,
+  isUp: boolean,
 }

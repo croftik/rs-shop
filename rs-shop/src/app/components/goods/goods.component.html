@@ -10,8 +10,8 @@
     <span class="category-title">{{subCategory.name}}</span>
     <ul class="wrapper-sorting">
       <li class="wrapper-sorting_title">Сортировать по:</li>
-      <li>популярности</li>
-      <li>цене</li>
+      <li id="rating" (click)="goodsService.setSortingSettingsInState($event)">популярности</li>
+      <li id="price" (click)="goodsService.setSortingSettingsInState($event)">цене</li>
     </ul>
     <app-one-good></app-one-good>
   </div>

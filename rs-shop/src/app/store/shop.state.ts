@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { State, Action, StateContext, Selector } from "@ngxs/store";
 import { HttpService } from "../services/http/http.service";
-import { SetCatalog, SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetDetails, SetGoodId, SetGoods, SetQueryParam, SetSearchResults } from "./shop.actions";
+import { SetCatalog, SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetDetails, SetDirectionOfSort, SetGoodId, SetGoods, SetQueryParam, SetSearchResults, SetSortingType } from "./shop.actions";
 import { IState } from "./shop.model";
 import { ICategories, ISubCategory } from "../models/categories.model";
 import { IGoodItem } from "../models/goods.model";
@@ -35,7 +35,9 @@ const initialState: IState = {
   isCatalogBtnPressed: false,
   searchResults: [],
   queryParam: '',
-  goodId: ''
+  goodId: '',
+  typeOfSorting: 'rating',
+  isUp: false,
 };
 
 @State<IState>({
@@ -142,5 +144,25 @@ export default class Shop {
   @Selector()
   public static goodId(state: IState): string {
     return state.goodId;
+  }
+
+  @Action(SetSortingType)
+  setSortingType(context: StateContext<IState>, action: SetSortingType) {
+    context.patchState({ typeOfSorting: action.sortingType });
+  }
+
+  @Selector()
+  public static typeOfSorting(state: IState): string {
+    return state.typeOfSorting;
+  }
+
+  @Action(SetDirectionOfSort)
+  setDirectionOfSort(context: StateContext<IState>, action: SetDirectionOfSort) {
+    context.patchState({ isUp: action.directionOfSort });
+  }
+
+  @Selector()
+  public static isUp(state: IState): boolean {
+    return state.isUp;
   }
 }

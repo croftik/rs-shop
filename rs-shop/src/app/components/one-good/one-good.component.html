@@ -1,5 +1,5 @@
 <div class="wrapper-goods">
-  <div class="wrapper-good" *ngFor="let good of goods$ |async">
+  <div class="wrapper-good" *ngFor="let good of goods$ | async">
     <img src={{good.imageUrls[0]}} class="img-good" (click)="navigateToDetailsPage(good)">
     <span class="name-good" title={{good.name}} (click)="navigateToDetailsPage(good)">{{good.name}}</span>
     <span class="availability-good" [ngStyle]="{'color': goodService.setColor(good.availableAmount)}">В наличии</span>
