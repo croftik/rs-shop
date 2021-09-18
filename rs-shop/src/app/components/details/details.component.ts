@@ -20,13 +20,12 @@ export class DetailsComponent implements OnInit {
 
   currentSubCategory: string = '';
 
-  constructor(private store: Store, public goodService: GoodService) {
+  constructor(private store: Store, public goodService: GoodService) {}
+
+  ngOnInit() {
     this.currentGood$ = this.store.select(Shop.details).pipe(
       map(data => data)
     );
-  }
-
-  ngOnInit() {
     this.currentCategory = this.store.selectSnapshot(Shop.currentCategory).name;
     this.currentSubCategory = this.store.selectSnapshot(Shop.currentSubCategory).ru;
   }

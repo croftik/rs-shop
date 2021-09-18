@@ -13,7 +13,7 @@ import { CatalogService } from './catalog.service';
 })
 export class CatalogComponent implements OnInit, DoCheck {
 
-  mainCategories$?: Observable<ICategories[]>;
+  mainCategories$: Observable<ICategories[]>;
 
   currentCategory: any;
 

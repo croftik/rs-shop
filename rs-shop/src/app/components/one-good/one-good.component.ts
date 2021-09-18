@@ -14,7 +14,7 @@ import { GoodService } from 'src/app/services/good/good.service';
   templateUrl: './one-good.component.html',
   styleUrls: ['./one-good.component.scss']
 })
-export class OneGoodComponent {
+export class OneGoodComponent implements OnInit {
 
   goods$: Observable<IGoodItem[]>;
 
@@ -22,7 +22,9 @@ export class OneGoodComponent {
 
   subCategory: string;
 
-  constructor(private store: Store, public goodService: GoodService, private activeRoute: ActivatedRoute, private router: Router) { 
+  constructor(private store: Store, public goodService: GoodService, private activeRoute: ActivatedRoute, private router: Router) {}
+
+  ngOnInit() {
     this.goods$ = this.store.select(Shop.goods).pipe(
       map(data => data)
     );
@@ -34,7 +36,7 @@ export class OneGoodComponent {
     const id = <string>(<HTMLElement>(event.target)).id.split('_')[1];
     this.store.select(Shop.goods).subscribe(data => {
       const currentGood = data.filter(element => element.id === id);
-      this.store.dispatch(new SetDetails(currentGood))
+      this.store.dispatch(new SetDetails(currentGood));
     });
     this.router.navigate([`${this.category}/${this.subCategory}/${id}`]);
   }

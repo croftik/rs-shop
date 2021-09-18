@@ -20,14 +20,12 @@ export class GoodsComponent implements OnInit, DoCheck {
 
   subCategory: ISubCategoryName;
 
-  constructor(public goodsService: GoodsService, private store: Store) {
-    this.category = this.store.selectSnapshot(Shop.currentCategory);
-    this.categoryName = this.category.name;
-    this.subCategory = this.store.selectSnapshot(Shop.currentSubCategory);
-  }
+  constructor(public goodsService: GoodsService, private store: Store) {}
 
   ngOnInit() {
-    
+    this.category = this.store.selectSnapshot(Shop.currentCategory);
+    this.categoryName = this.category.name;
+    this.subCategory = this.store.selectSnapshot(Shop.currentSubCategory);    
   }
 
   ngDoCheck() {

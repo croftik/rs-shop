@@ -9,16 +9,18 @@ import { CatalogService } from '../catalog/catalog.service';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements DoCheck {
+export class CategoryComponent implements OnInit, DoCheck {
 
   subCategories: ISubCategory[];
 
   category: ICategories;
 
-  constructor(private store: Store, public catalogService: CatalogService) {
+  constructor(private store: Store, public catalogService: CatalogService) {}
+
+  ngOnInit() {
     this.category = this.store.selectSnapshot(Shop.currentCategory);
     this.subCategories = this.category.subCategories;
-   }
+  }
 
   ngDoCheck() {
     this.category = this.store.selectSnapshot(Shop.currentCategory);
