@@ -23,6 +23,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchGoodsComponent } from './components/search-goods/search-goods.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
+import { PopularGoodsComponent } from './components/popular-goods/popular-goods.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { OrderFormComponent } from './components/order-form/order-form.component
     CategoryComponent,
     ShoppingCartComponent,
     SearchGoodsComponent,
-    OrderFormComponent
+    OrderFormComponent,
+    PopularGoodsComponent
   ],
   imports: [
     BrowserModule,

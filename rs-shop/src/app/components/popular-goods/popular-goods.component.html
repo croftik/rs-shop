@@ -1,0 +1,20 @@
+<section class="popular-goods">
+  <h4 class="popular-goods__title">Популярные товары</h4>
+  <div class="popular-goods__slider">
+    <img src="../../../assets/icons/right-arrow.png" class="popular-goods__left-arrow">
+    <img src="../../../assets/icons/right-arrow.png" class="popular-goods__right-arrow">
+    <div class="popular-goods__wrapper">
+      <div class="popular-goods__item" *ngFor="let good of popularGood">
+        <div class="popular-goods__wrapper-img">
+          <img src="{{good.imageUrls[0]}}" class="popular-goods__img">
+        </div>
+        <img src="../../../assets/icons/popular.png" class="popular-goods__img_label">
+        <div class="popular-goods__info">
+          <span class="popular-goods__name">{{good.name}}</span>
+          <span class="popular-goods__rating">{{good.rating | formatRating}}</span>
+          <span class="popular-goods__price">{{good.price | formatPrice}} p.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
