@@ -1,51 +1,54 @@
-<div class="wrapper-shopping-cart">
-  <div class="help">
-    <span>Помощь в оформлении:</span>
-    <span class="help-phone">+375 29 339-98-05</span>
-  </div>
-  <h2 class="ordering">Оформление заказа</h2>
-  <h4 class="list">Список товаров</h4>
-  <div class="table">
-    <div class="table-column">
-      <span class="table-header">{{tableHeader.Good}}</span>
-      <div class="wrapper-block">
-        <div class="block1">
-          <img src="{{good.imageUrls[0]}}" class="img-good">
-          <button class="btn-delete">удалить</button>
-        </div>
-        <div class="block2">
-          <span class="title-good">{{good.name}}</span>
-          <button class="btn-in-favourite">★ Добавить в избранное</button>
-        </div>
-      </div>      
+<main>
+  <div class="wrapper-shopping-cart">
+    <div class="help">
+      <span>Помощь в оформлении:</span>
+      <span class="help-phone">+375 29 339-98-05</span>
     </div>
-    <div class="table-column">
-      <span class="table-header">{{tableHeader.Description}}</span>
-      <span class="description-good">{{good.description}}</span>
-    </div>
-    <div class="table-column">
-      <span class="table-header">{{tableHeader.Quantity}}</span>
-      <div class="wrapper-btn-quantity">
-        <button class="btn-quantity">-</button>
-        <span class="quantity">1</span>
-        <button class="btn-quantity">+</button>
+    <h2 class="ordering">Оформление заказа</h2>
+    <h4 class="list">Список товаров</h4>
+    <div class="table">
+      <div class="table-column">
+        <span class="table-header">{{tableHeader.Good}}</span>
+        <div class="wrapper-block">
+          <div class="block1">
+            <img src="{{good.imageUrls[0]}}" class="img-good">
+            <button class="btn-delete">удалить</button>
+          </div>
+          <div class="block2">
+            <span class="title-good">{{good.name}}</span>
+            <button class="btn-in-favourite">★ Добавить в избранное</button>
+          </div>
+        </div>      
+      </div>
+      <div class="table-column">
+        <span class="table-header">{{tableHeader.Description}}</span>
+        <span class="description-good">{{good.description}}</span>
+      </div>
+      <div class="table-column">
+        <span class="table-header">{{tableHeader.Quantity}}</span>
+        <div class="wrapper-btn-quantity">
+          <button class="btn-quantity">-</button>
+          <span class="quantity">1</span>
+          <button class="btn-quantity">+</button>
+        </div>
+      </div>
+      <div class="table-column">
+        <span class="table-header">{{tableHeader.Delivery}}</span>
+        <span class="delivery-type">Курьером: сегодня</span>
+        <span class="delivery-type">Самовызов: сегодня</span>
+      </div>
+      <div class="table-column">
+        <span class="table-header">{{tableHeader.Cost}}</span>
+        <span class="price-good">{{good.price | formatPrice}} p.</span>
       </div>
     </div>
-    <div class="table-column">
-      <span class="table-header">{{tableHeader.Delivery}}</span>
-      <span class="delivery-type">Курьером: сегодня</span>
-      <span class="delivery-type">Самовызов: сегодня</span>
+    <div class="wrapper-cost">
+      <span class="total-cost">Общая стоимость:</span>
+      <span class="total-price">{{good.price | formatPrice}} p.</span>
     </div>
-    <div class="table-column">
-      <span class="table-header">{{tableHeader.Cost}}</span>
-      <span class="price-good">{{good.price | formatPrice}} p.</span>
-    </div>
+    <div class="wrapper-btn">
+      <button class="btn-checkout">Оформить заказ</button>
+    </div> 
   </div>
-  <div class="wrapper-cost">
-    <span class="total-cost">Общая стоимость:</span>
-    <span class="total-price">{{good.price | formatPrice}} p.</span>
-  </div>
-  <div class="wrapper-btn">
-    <button class="btn-checkout">Оформить заказ</button>
-  </div> 
-</div>
+  <app-order-form></app-order-form>
+</main>
