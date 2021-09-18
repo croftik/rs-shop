@@ -47,7 +47,7 @@
       </div>
     </div>  
     <div class="search-block">
-      <div class="logo-block">
+      <div class="logo-block" (click)="headerService.navigateToMainPage()">
         <img src="../../../assets/icons/logo.png" class="img_logo">
         <h1 data-name="Online Shopping">Online Shopping</h1>
       </div>
@@ -103,7 +103,7 @@
         </ul>
       </div>
 
-      <button class="header__btn search-block_btn">
+      <button class="header__btn search-block_btn" (click)="headerService.showShoppingCart()">
         <img src="../../../assets/icons/shopping-cart.png" class="img_icon-btn">
         <div class="count-of-goods goods-in-sc">
           <span class="count-of-goods_number number-in-sc">13</span>
@@ -116,11 +116,12 @@
 
   <div class="main-categories-block">
     <div class="main-categories-block_wrapper">
-      <ul *ngFor="let li of mainCategories">
-        <li>{{li}}</li>
+      <ul *ngFor="let category of mainCategories$ | async">
+        <li id="li_{{category.id}}" (click)="catalogService.showSubCategoriesInCategory($event)">{{category.name}}</li>
       </ul>
     </div>
   </div>
+  
   <app-catalog *ngIf="isCatalogBtnPressed"></app-catalog>
   <app-login-form *ngIf="headerService.isLoginFormVisible"></app-login-form>
 </header>

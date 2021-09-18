@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngxs/store';
-import { SetCatalog } from 'src/app/store/shop.actions';
-import Shop from 'src/app/store/shop.state';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +20,7 @@ export class HeaderService {
 
   isLoginFormVisible: boolean;
 
-  constructor() {
+  constructor(private router: Router) {
     this.isExpandedContacts = false;
     this.isExpandedPayment = false;
     this.isExpandedAccount = false;
@@ -77,6 +75,14 @@ export class HeaderService {
       this.isExpandedAccount = false;
       this.stateAccount = 'initialContacts';
     }
+  }
+
+  showShoppingCart() {
+    this.router.navigate(['order']);
+  }
+
+  navigateToMainPage() {
+    this.router.navigate(['']);
   }
 }
 
