@@ -62,6 +62,12 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
 
   isCatalogBtnPressed: boolean;
 
+  numberOfGoodsInShoppingCart: number;
+
+  numberOfFavourites: number;
+
+  numberOfGoodsInWaitingList: number
+
   private unsubscribe$ = new Subject();
 
   constructor(public headerService: HeaderService, public goodService: GoodService, private store: Store, public catalogService: CatalogService) {
@@ -92,8 +98,16 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
     this.store.dispatch(new SetCatalog(this.isCatalogBtnPressed));
   }
 
+  onClickFavourites() {
+    this.headerService.navigateToFavourites();
+  }
+
   ngDoCheck() {
     this.isCatalogBtnPressed = this.store.selectSnapshot(Shop.isCatalogBtnPressed);
+    const userInfo = this.store.selectSnapshot(Shop.userInfo);
+    this.numberOfGoodsInShoppingCart = userInfo.cart.length;
+    this.numberOfFavourites = userInfo.favorites.length;
+    //if (userInfo.orders === []) this.numberOfGoodsInShoppingCart = 0;
   }
 
   ngOnDestroy(): void {

@@ -1,5 +1,6 @@
 import { ICategories, ISubCategory } from "../models/categories.model";
 import { IGoodItem } from "../models/goods.model";
+import { IUser } from "../models/user.model";
 
 export interface IState {
   categories: ICategories[],
@@ -13,4 +14,6 @@ export interface IState {
   goodId: string,
   typeOfSorting: string,
   isUp: boolean,
+  userInfo: IUser,
+  token: string,
 }

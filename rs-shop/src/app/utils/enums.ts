@@ -9,8 +9,7 @@ export enum Payment {
 export enum AccountInfo {
   ShoppingCart = 'Корзина',
   Favourite = 'Избранные товары',
-  Viewed = 'Просмотренные',
-  Lists = 'Списки сравнения'
+  List = 'Лист ожидания'
 }
 
 export enum Socials {

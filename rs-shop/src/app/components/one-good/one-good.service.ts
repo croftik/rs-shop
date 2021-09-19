@@ -45,8 +45,4 @@ export class OneGoodService {
   getSortingByRatingDown(a: IGoodItem, b: IGoodItem): number {
     return b.rating - a.rating;
   }
-
-  /**ERROR TypeError: Cannot assign to read only property '0' of object '[object Array]'
-    at Array.sort (<anonymous>)
-    at OneGoodService.getSortingGoods (one-good.service.ts:25) */
 }

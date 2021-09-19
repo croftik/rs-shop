@@ -40,3 +40,23 @@ input {
     background-color: #e03653;
   }
 }
+
+.btn-in-cart {
+  background-color: transparent;
+  border: 1px solid #e03653;
+  color: #e03653;
+  &:hover {
+    background-color: transparent;
+    text-decoration: underline;
+  }
+}
+
+.btn-in-favourite {
+  background-color: transparent;
+  border: 1px solid #e8a006;
+  color: #e8a006;
+  &:hover {
+    background-color: transparent;
+    text-decoration: underline;
+  }
+}

@@ -24,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SearchGoodsComponent } from './components/search-goods/search-goods.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { PopularGoodsComponent } from './components/popular-goods/popular-goods.component';
+import { FavouritesComponent } from './components/favourites/favourites.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { PopularGoodsComponent } from './components/popular-goods/popular-goods.
     ShoppingCartComponent,
     SearchGoodsComponent,
     OrderFormComponent,
-    PopularGoodsComponent
+    PopularGoodsComponent,
+    FavouritesComponent
   ],
   imports: [
     BrowserModule,

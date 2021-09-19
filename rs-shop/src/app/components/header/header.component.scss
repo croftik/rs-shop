@@ -90,6 +90,9 @@
 
 .logo-block {
   display: flex;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .img_logo {

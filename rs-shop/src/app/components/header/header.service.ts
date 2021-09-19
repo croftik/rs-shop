@@ -23,6 +23,8 @@ export class HeaderService {
 
   isLoginFormVisible: boolean;
 
+  isUserLogged: boolean
+
   constructor(private router: Router, private httpService: HttpService, private store: Store) {
     this.isExpandedContacts = false;
     this.isExpandedPayment = false;
@@ -31,6 +33,7 @@ export class HeaderService {
     this.stateAccount = 'initialAccount';
     this.statePayment = 'initialPayment';
     this.stateContacts = 'initialContacts';
+    this.isUserLogged = localStorage.getItem('user') ? true : false; 
   }
 
   showPayment() {
@@ -88,8 +91,25 @@ export class HeaderService {
     this.router.navigate(['']);
   }
 
+  navigateToFavourites() {
+    this.router.navigate(['favourites']);
+  }
+
   searchGoods(value: string) {
     this.store.dispatch(new SetQueryParam(value));
+  }
+
+  hideLoginForm() {
+    this.isLoginFormVisible = false;
+  }
+
+  changeImg() {
+    this.isUserLogged = !this.isUserLogged;
+  }
+
+  signOut() {
+    this.changeImg();
+    localStorage.removeItem('user');
   }
 }
 

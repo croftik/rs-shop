@@ -1,5 +1,6 @@
 import { ICategories, ISubCategory } from "../models/categories.model";
 import { IGoodItem } from "../models/goods.model";
+import { IUser } from "../models/user.model";
 
 export class SetCategories {
   static readonly type = 'shop categories';
@@ -48,11 +49,20 @@ export class SetGoodId {
 
 export class SetSortingType {
   static readonly type = 'shop sort';
-
   constructor(public sortingType: string) {}
 }
+
 export class SetDirectionOfSort {
   static readonly type = 'shop sorting direction';
-
   constructor(public directionOfSort: boolean) {}
+}
+
+export class SetUserInfo {
+  static readonly type = 'shop user';
+  constructor(public userInfo: IUser) {}
+}
+
+export class SetToken {
+  static readonly type = 'shop token';
+  constructor(public token: string) {}
 }

@@ -5,8 +5,10 @@
     <span class="availability-good" [ngStyle]="{'color': goodService.setColor(good.availableAmount)}">В наличии</span>
     <span class="price-good">{{good.price | formatPrice}} p.</span>
     <span class="rating-good">{{good.rating | formatRating}}</span>
-    <button class="btn-cart">В корзину</button>
-    <button class="btn-favourite">В избранное</button>  
+    <button class="btn-cart" (click)="onClickInCart(good)" *ngIf="!isBtnCartPressed">В корзину</button>
+    <button class="btn-cart btn-in-cart"*ngIf="isBtnCartPressed">В корзине</button>
+    <button class="btn-favourite" (click)="onClickInFavourite(good)" *ngIf="!isBtnFavouritesPressed">В избранное</button>
+    <button class="btn-favourite btn-in-favourite" *ngIf="isBtnFavouritesPressed">В избранном</button>
   </div>
 </div>
 

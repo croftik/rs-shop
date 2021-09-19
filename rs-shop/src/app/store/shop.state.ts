@@ -1,44 +1,13 @@
 import { Injectable } from "@angular/core";
 import { State, Action, StateContext, Selector } from "@ngxs/store";
 import { HttpService } from "../services/http/http.service";
-import { SetCatalog, SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetDetails, SetDirectionOfSort, SetGoodId, SetGoods, SetQueryParam, SetSearchResults, SetSortingType } from "./shop.actions";
+import { SetCatalog, SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetDetails, SetDirectionOfSort, SetGoodId, SetGoods, SetQueryParam, SetSearchResults, SetSortingType, SetToken, SetUserInfo } from "./shop.actions";
 import { IState } from "./shop.model";
 import { ICategories, ISubCategory } from "../models/categories.model";
 import { IGoodItem } from "../models/goods.model";
 import { map } from "rxjs/operators";
-
-const initialState: IState = {
-  categories: [],
-  currentCategory: {
-    "id": '',
-    "name": '',
-    "subCategories": []
-  },
-  currentSubCategory: {
-    "id": '',
-    "name": ''
-  },
-  goods: [],
-  details: {
-    "id": '',
-    "name": '',
-    "imageUrls": [''],
-    "rating": 0,
-    "availableAmount": 0,
-    "price": 0, 
-    "description": '',
-    "isInCart": false,
-    "isFavorite": false,
-    "category": '',
-    "subCategory": ''
-  },
-  isCatalogBtnPressed: false,
-  searchResults: [],
-  queryParam: '',
-  goodId: '',
-  typeOfSorting: 'rating',
-  isUp: false,
-};
+import { initialState } from "../utils/utilities";
+import { IUser } from "../models/user.model";
 
 @State<IState>({
   name: 'Shop',
@@ -164,5 +133,28 @@ export default class Shop {
   @Selector()
   public static isUp(state: IState): boolean {
     return state.isUp;
+  }
+
+  @Action(SetUserInfo)
+  setUserInfo(context: StateContext<IState>, action: SetUserInfo) {
+    context.patchState({ userInfo: action.userInfo });
+  }
+
+  @Selector()
+  public static userInfo(state: IState): IUser {
+    return state.userInfo;
+  }
+
+  @Action(SetToken)
+  setToken(context: StateContext<IState>, action: SetToken) {
+    context.patchState({ token: action.token });
+    return this.httpService.getUserInfo(action.token).pipe(
+      map((data:any) => context.dispatch(new SetUserInfo(data)))
+    );
+  }
+
+  @Selector()
+  public static token(state: IState): string {
+    return state.token;
   }
 }

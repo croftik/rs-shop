@@ -13,15 +13,15 @@
       <span class="table-header">{{tableHeader.Delivery}}</span>
       <span class="table-header">{{tableHeader.Cost}}</span>        
     </div>
-    <div class="table" *ngFor="let good of goods">
+    <div class="table" *ngFor="let good of goods" id="{{good.id}}">
       <div class="wrapper-block" >
         <div class="block1">
           <img src="{{good.imageUrls[0]}}" class="img-good">
-          <button class="btn-delete">удалить</button>
+          <button class="btn-delete" (click)="onClickDeleteBtn(good)">удалить</button>
         </div>
         <div class="block2">
           <span class="title-good">{{good.name}}</span>
-          <button class="btn-in-favourite">★ Добавить в избранное</button>
+          <button class="btn-in-favourite" (click)="onClickInFavourite(good)">★ Добавить в избранное</button>
         </div>
       </div>
   

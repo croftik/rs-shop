@@ -28,8 +28,8 @@
       </div>
       <span class="price-good">{{currentGood$.price | formatPrice}} p.</span>
       <span class="rating-good">{{currentGood$.rating | formatRating}}</span>
-      <button class="btn-cart">В корзину</button>
-      <button class="btn-favourite">В избранное</button>
+      <button class="btn-cart" (click)="onClickInCart(currentGood$)">В корзину</button>
+      <button class="btn-favourite" (click)="onClickInFavourite(currentGood$)">В избранное</button>
     </div>
   </div>
 </main>

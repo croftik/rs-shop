@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SetGoodId } from 'src/app/store/shop.actions';
 import { GoodService } from 'src/app/services/good/good.service';
 import { OneGoodService } from './one-good.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-one-good',
@@ -22,17 +23,24 @@ export class OneGoodComponent implements OnInit, DoCheck {
 
   subCategory: string;
 
+  isBtnCartPressed: boolean;
+
+  isBtnFavouritesPressed: boolean;
+
   constructor(
     private store: Store, 
     public goodService: GoodService, 
     private activeRoute: ActivatedRoute, 
     private router: Router, 
-    private oneGoodService: OneGoodService
+    private oneGoodService: OneGoodService,
+    private shoppingCartService: ShoppingCartService
   ) {}
 
   ngOnInit() {
     this.category = this.activeRoute.snapshot.params.category;
     this.subCategory = this.activeRoute.snapshot.params.good;
+    this.isBtnCartPressed = false;
+    this.isBtnFavouritesPressed = false;
   }
 
   ngDoCheck() {
@@ -44,5 +52,13 @@ export class OneGoodComponent implements OnInit, DoCheck {
   navigateToDetailsPage(good: IGoodItem) {
     this.store.dispatch(new SetGoodId(good.id));
     this.router.navigate([`${this.category}/${this.subCategory}/${good.id}`]);
+  }
+
+  onClickInCart(good: IGoodItem) {
+    this.shoppingCartService.putGoodInCart(good.id);
+  }
+
+  onClickInFavourite(good: IGoodItem) {
+    this.shoppingCartService.putGoodInFavourite(good.id);
   }
 }
