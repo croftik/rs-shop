@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import { SetToken } from 'src/app/store/shop.actions';
@@ -7,22 +7,23 @@ import { HttpService } from '../http/http.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ShoppingCartService {
+export class FavouritesService {
 
   token: string = <string>localStorage.getItem('user');
 
   constructor(private httpService: HttpService, private store: Store) { }
 
-  putGoodInCart(id: string) {
-    this.httpService.postInCart(id).pipe(
+  putGoodInFavourite(id: string) {
+    this.httpService.postInFavourite(id).pipe(
       tap(data => this.store.dispatch(new SetToken(this.token)))
     ).subscribe();
   }
 
-  deleteGoodFromCart(id: string) {
-    this.httpService.deleteGoodFromCart(id).pipe(
+  deleteGoodFromFavourites(id: string) {
+    this.httpService.deleteGoodFromFavourite(id).pipe(
       tap(data => this.store.dispatch(new SetToken(this.token)))
     ).subscribe();
     document.getElementById(id)?.remove();
   }
+
 }
