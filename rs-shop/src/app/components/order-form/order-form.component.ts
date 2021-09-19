@@ -1,16 +1,21 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngxs/store';
+import Shop from 'src/app/store/shop.state';
+import { OrderFormService } from './order-form.service';
 
 @Component({
   selector: 'app-order-form',
   templateUrl: './order-form.component.html',
   styleUrls: ['./order-form.component.scss']
 })
-export class OrderFormComponent implements OnInit {
+export class OrderFormComponent implements OnInit, DoCheck {
 
   formOrder: FormGroup;
 
-  constructor() { }
+  totalCost: number;
+
+  constructor(private store: Store, private orderFormService: OrderFormService) { }
 
   ngOnInit() {
     this.formOrder = new FormGroup({  
@@ -27,5 +32,13 @@ export class OrderFormComponent implements OnInit {
       "date": new FormControl("", [Validators.required]),
       "comment": new FormControl("", [Validators.maxLength(250)])
     });
+  }
+
+  ngDoCheck() {
+    this.totalCost = this.store.selectSnapshot(Shop.totalCost);
+  }
+
+  onClickSubmitBtn() {
+    this.orderFormService.makeOrder(this.formOrder);
   }
 }

@@ -1,6 +1,6 @@
 import { ICategories, ISubCategory } from "../models/categories.model";
 import { IGoodItem } from "../models/goods.model";
-import { IUser } from "../models/user.model";
+import { IItems, IUser } from "../models/user.model";
 
 export class SetCategories {
   static readonly type = 'shop categories';
@@ -65,4 +65,14 @@ export class SetUserInfo {
 export class SetToken {
   static readonly type = 'shop token';
   constructor(public token: string) {}
+}
+
+export class SetTotalCost {
+  static readonly type = 'shop total cost';
+  constructor(public totalCost: number) {}
+}
+
+export class SetItemsInCart {
+  static readonly type = 'shop items in cart';
+  constructor(public cartItems: IItems[]) {}
 }

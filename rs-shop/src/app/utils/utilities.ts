@@ -52,4 +52,6 @@ export const initialState: IState = {
     }]
   },
   token: '',
+  totalCost: 0,
+  cartItems: []
 };

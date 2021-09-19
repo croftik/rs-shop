@@ -58,4 +58,8 @@ export class HttpService {
     return this.http.post(`${baseUrl}/users/favorites`, body, {headers: this.getHeadersAuthorization()});
   }
 
+  postOrder(body: any) {
+    return this.http.post(`${baseUrl}/users/order`, body, {headers: this.getHeadersAuthorization()});
+  }
+
 }

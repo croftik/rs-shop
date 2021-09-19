@@ -41,9 +41,9 @@
   </form>
   <div class="order__cost">
     <span class="total-cost">К оплате: </span>
-    <span class="total-price">28.90 р.</span>
+    <span class="total-price">{{totalCost}} р.</span>
   </div>
   <div class="order__cost-btn">
-    <button class="btn-confirm" type="submit" form="order">Подтвердить заказ</button>
+    <button class="btn-confirm" form="order" (click)="onClickSubmitBtn()">Подтвердить заказ</button>
   </div>
 </div>

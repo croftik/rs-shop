@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import { State, Action, StateContext, Selector } from "@ngxs/store";
 import { HttpService } from "../services/http/http.service";
-import { SetCatalog, SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetDetails, SetDirectionOfSort, SetGoodId, SetGoods, SetQueryParam, SetSearchResults, SetSortingType, SetToken, SetUserInfo } from "./shop.actions";
+import { SetCatalog, SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetDetails, SetDirectionOfSort, SetGoodId, SetGoods, SetItemsInCart, SetQueryParam, SetSearchResults, SetSortingType, SetToken, SetTotalCost, SetUserInfo } from "./shop.actions";
 import { IState } from "./shop.model";
 import { ICategories, ISubCategory } from "../models/categories.model";
 import { IGoodItem } from "../models/goods.model";
 import { map } from "rxjs/operators";
 import { initialState } from "../utils/utilities";
-import { IUser } from "../models/user.model";
+import { IItems, IUser } from "../models/user.model";
 
 @State<IState>({
   name: 'Shop',
@@ -156,5 +156,25 @@ export default class Shop {
   @Selector()
   public static token(state: IState): string {
     return state.token;
+  }
+
+  @Action(SetTotalCost)
+  setTotalCost(context: StateContext<IState>, action: SetTotalCost) {
+    context.patchState({ totalCost: action.totalCost });
+  }
+
+  @Selector()
+  public static totalCost(state: IState): number {
+    return state.totalCost;
+  }
+
+  @Action(SetItemsInCart)
+  SetItemsInCart(context: StateContext<IState>, action: SetItemsInCart) {
+    context.patchState({ cartItems: action.cartItems });
+  }
+
+  @Selector()
+  public static cartItems(state: IState): IItems[] {
+    return state.cartItems;
   }
 }
