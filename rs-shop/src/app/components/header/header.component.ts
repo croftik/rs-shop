@@ -105,9 +105,10 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
   ngDoCheck() {
     this.isCatalogBtnPressed = this.store.selectSnapshot(Shop.isCatalogBtnPressed);
     const userInfo = this.store.selectSnapshot(Shop.userInfo);
-    this.numberOfGoodsInShoppingCart = userInfo.cart.length;
-    this.numberOfFavourites = userInfo.favorites.length;
-    //if (userInfo.orders === []) this.numberOfGoodsInShoppingCart = 0;
+    if (userInfo.cart[0] === '') this.numberOfGoodsInShoppingCart = 0;
+    else this.numberOfGoodsInShoppingCart = userInfo.cart.length;
+    if (userInfo.favorites[0] === '') this.numberOfFavourites = 0;
+    else this.numberOfFavourites = userInfo.favorites.length;
   }
 
   ngOnDestroy(): void {
