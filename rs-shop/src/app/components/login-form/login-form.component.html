@@ -1,35 +1,37 @@
 <div class="wrapper-login-form">
-	<button class="btn-close">
+	<button class="btn-close" (click)="headerService.hideLoginForm()">
 		<img src="../../../assets/icons/close.png">
 	</button>
 	<div class="container" id="container" [ngClass]="{'right-panel-active':isActive}">
 		<div class="form-container sign-up-container">
-			<form action="#">
+			<form action="#" [formGroup]="signUpForm">
 				<h2 class="form-title">Создать аккаунт</h2>
-				<input type="email" placeholder="Электронная почта" />
-				<input type="password" placeholder="Пароль" />
-				<button class="form-btn">Регистрация</button>
+				<input type="text" placeholder="Имя" formControlName="firstName">
+				<input type="text" placeholder="Фамилия" formControlName="lastName">
+				<input type="text" placeholder="Логин" formControlName="login">
+				<input type="password" placeholder="Пароль" formControlName="password">
+				<button class="form-btn" (click)="OnClickBtnSignUp()">Регистрация</button>
 			</form>
 		</div>
 		<div class="form-container sign-in-container">
-			<form action="#">
+			<form action="#" [formGroup]="signInForm">
 				<h2 class="form-title">Вход</h2>
-				<input type="email" placeholder="Электронная почта" />
-				<input type="password" placeholder="Пароль" />
+				<input type="text" placeholder="Логин" formControlName="login">
+				<input type="password" placeholder="Пароль" formControlName="password">
 				<a class="forget-password" href="#">Забыли пароль?</a>
-				<button class="form-btn">Войти</button>
+				<button class="form-btn" (click)="OnClickBtnSignIn()">Войти</button>
 			</form>
 		</div>
 		<div class="overlay-container">
 			<div class="overlay">
 				<div class="overlay-panel overlay-left">
 					<h2>Добро пожаловать!</h2>
-					<p class="message">Для того, чтобы зарегистрироваться введите свою почту и пароль</p>
+					<p class="message">Для того, чтобы зарегистрироваться введите свои персональные данные!</p>
 					<button class="ghost" id="signIn" (click)="this.showSignInForm()">Войти</button>
 				</div>
 				<div class="overlay-panel overlay-right">
 					<h1>Добро пожаловать в Online Shopping!</h1>
-					<p class="message">Введите свои персональные данные и начните путешествие в мир покупок вместе с нами!</p>
+					<p class="message">Начни путешествие в мир покупок вместе с нами!</p>
 					<button class="ghost" id="signUp" (click)="this.showSignUpForm()">Регистрация</button>
 				</div>
 			</div>
