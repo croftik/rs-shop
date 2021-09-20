@@ -28,9 +28,9 @@
       <span class="description-good" >{{good.description}}</span>
   
       <div class="wrapper-btn-quantity">
-        <button class="btn-quantity">-</button>
-        <span class="quantity">1</span>
-        <button class="btn-quantity">+</button>
+        <button class="btn-quantity" (click)="onClickMinusBtn(good)">-</button>
+        <span class="quantity" id="quantity_{{good.id}}">1</span>
+        <button class="btn-quantity" (click)="onClickPlusBtn(good)">+</button>
       </div>
   
       <div class="wrapper-delivery">
@@ -38,7 +38,8 @@
         <span class="delivery-type">Самовызов: сегодня</span>
       </div>
       
-      <span class="price-good">{{good.price | formatPrice}} p.</span>
+      <span class="price-good" id="price_{{good.id}}">{{good.price | formatPrice}}</span>
+      
     </div>
 
     <div class="wrapper-cost">
@@ -46,8 +47,8 @@
       <span class="total-price">{{totalCost | formatPrice}} p.</span>
     </div>
     <div class="wrapper-btn">
-      <button class="btn-checkout">Оформить заказ</button>
+      <button class="btn-checkout" (click)="onClickConfirmBtn()">Оформить заказ</button>
     </div> 
   </div>
-  <app-order-form></app-order-form>
+  <app-order-form *ngIf="isOrderFormVisible"></app-order-form>
 </main>
