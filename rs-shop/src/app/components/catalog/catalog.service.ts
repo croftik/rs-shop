@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { ICategories, ISubCategory } from 'src/app/models/categories.model';
 import { HttpService } from 'src/app/services/http/http.service';
-import { SetCatalog, SetCurrentCategory, SetCurrentSubCategory, SetGoods } from 'src/app/store/shop.actions';
+import { SetCatalog, SetCurrentCategory, SetCurrentSubCategory, SetGoods, SetСountOfGoods } from 'src/app/store/shop.actions';
 import Shop from 'src/app/store/shop.state';
 
 @Injectable({
@@ -30,10 +30,9 @@ export class CatalogService {
     this.store.dispatch(new SetCurrentSubCategory(subCategory));
     const categoryId = this.store.selectSnapshot(Shop.currentCategory).id;
     this.putAwayCatalog();
-    this.httpService.getData(`goods/category/${categoryId}/${subCategory.id}`).subscribe((data:any) => {
-      this.store.dispatch(new SetGoods(data));
-    });
+    this.store.dispatch(new SetGoods(categoryId,subCategory.id));
     this.router.navigate([`${categoryId}/${subCategory.id}`]);
+    this.store.dispatch(new SetСountOfGoods(10));
   }
 
   putAwayCatalog() {

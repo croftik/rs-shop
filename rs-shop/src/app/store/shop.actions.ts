@@ -19,7 +19,7 @@ export class SetCurrentSubCategory {
 
 export class SetGoods {
   static readonly type = 'shop goods';
-  constructor(public goods: IGoodItem[]) {}
+  constructor(public category: string, public subCategory: string) {}
 }
 
 export class SetDetails {
@@ -75,4 +75,19 @@ export class SetTotalCost {
 export class SetItemsInCart {
   static readonly type = 'shop items in cart';
   constructor(public cartItems: IItems[]) {}
+}
+
+export class SetLoginFormVisible {
+  static readonly type = 'shop login form';
+  constructor(public isLoginFormVisible: boolean) {}
+}
+
+export class SetLengthOfGoods {
+  static readonly type = 'shop length';
+  constructor(public lengthOfData: number) {}
+}
+
+export class SetСountOfGoods {
+  static readonly type = 'shop count';
+  constructor(public countOfGoods: number) {}
 }

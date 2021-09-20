@@ -1,14 +1,13 @@
 <div class="wrapper-goods">
-  <div class="wrapper-good" *ngFor="let good of goods$ | async">
+  <div class="wrapper-good" *ngFor="let good of goods$ | async | slice:start:last">
     <img src={{good.imageUrls[0]}} class="img-good" (click)="navigateToDetailsPage(good)">
     <span class="name-good" title={{good.name}} (click)="navigateToDetailsPage(good)">{{good.name}}</span>
     <span class="availability-good" [ngStyle]="{'color': goodService.setColor(good.availableAmount)}">В наличии</span>
     <span class="price-good">{{good.price | formatPrice}} p.</span>
     <span class="rating-good">{{good.rating | formatRating}}</span>
-    <button class="btn-cart" (click)="onClickInCart(good)" *ngIf="!isBtnCartPressed">В корзину</button>
-    <button class="btn-cart btn-in-cart"*ngIf="isBtnCartPressed">В корзине</button>
-    <button class="btn-favourite" (click)="onClickInFavourite(good)" *ngIf="!isBtnFavouritesPressed">В избранное</button>
-    <button class="btn-favourite btn-in-favourite" *ngIf="isBtnFavouritesPressed">В избранном</button>
+    <button class="btn-cart" [ngClass]="good.isInCart ? 'btn-in-cart' : 'btn-cart'" (click)="onClickInCart(good)">{{good.isInCart ? 'В корзине' : 'В корзину'}}</button>
+    <button class="btn-favourite" (click)="onClickInFavourite(good)" [ngClass]="good.isFavorite ? 'btn-in-favourite' : 'btn-favourite'">{{good.isFavorite ? 'В избранном' : 'В избранное'}}</button>
   </div>
+  <button class="btn-next" (click)="onClickNext()" *ngIf="(lengthOfData > last)">Показать больше</button>
 </div>
 

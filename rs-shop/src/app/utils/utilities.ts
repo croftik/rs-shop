@@ -53,5 +53,8 @@ export const initialState: IState = {
   },
   token: '',
   totalCost: 0,
-  cartItems: []
+  cartItems: [],
+  isLoginFormVisible: false,
+  lengthOfData: 0,
+  countOfGoods: 0
 };

@@ -53,3 +53,14 @@
   border: 1px dashed #D7D7D7;
   margin-top: 30px;
 }
+
+.btn-next {
+  background-color: transparent;
+  font-size: 14px;
+  border: none;
+  padding: 5px;
+  height: 470px;
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { State, Action, StateContext, Selector } from "@ngxs/store";
 import { HttpService } from "../services/http/http.service";
-import { SetCatalog, SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetDetails, SetDirectionOfSort, SetGoodId, SetGoods, SetItemsInCart, SetQueryParam, SetSearchResults, SetSortingType, SetToken, SetTotalCost, SetUserInfo } from "./shop.actions";
+import { SetCatalog, SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetDetails, SetDirectionOfSort, SetGoodId, SetGoods, SetItemsInCart, SetLengthOfGoods, SetLoginFormVisible, SetQueryParam, SetSearchResults, SetSortingType, SetToken, SetTotalCost, SetUserInfo, SetСountOfGoods } from "./shop.actions";
 import { IState } from "./shop.model";
 import { ICategories, ISubCategory } from "../models/categories.model";
 import { IGoodItem } from "../models/goods.model";
-import { map } from "rxjs/operators";
+import { map, tap } from "rxjs/operators";
 import { initialState } from "../utils/utilities";
 import { IItems, IUser } from "../models/user.model";
 
@@ -51,7 +51,12 @@ export default class Shop {
 
   @Action(SetGoods)
   SetGoods(context : StateContext<IState>, action: SetGoods) {
-    context.patchState({goods: action.goods});
+    return this.httpService.getData(`goods/category/${action.category}/${action.subCategory}`).pipe(
+      tap((data:any) => {
+        context.patchState({goods:data})
+        context.dispatch(new SetLengthOfGoods(data.length));
+      })
+    );
   }
 
   @Selector()
@@ -148,7 +153,7 @@ export default class Shop {
   @Action(SetToken)
   setToken(context: StateContext<IState>, action: SetToken) {
     context.patchState({ token: action.token });
-    return this.httpService.getUserInfo(action.token).pipe(
+    return this.httpService.getUserInfo().pipe(
       map((data:any) => context.dispatch(new SetUserInfo(data)))
     );
   }
@@ -176,5 +181,35 @@ export default class Shop {
   @Selector()
   public static cartItems(state: IState): IItems[] {
     return state.cartItems;
+  }
+
+  @Action(SetLoginFormVisible)
+  SetLoginFormVisible(context: StateContext<IState>, action: SetLoginFormVisible) {
+    context.patchState({ isLoginFormVisible: action.isLoginFormVisible });
+  }
+
+  @Selector()
+  public static isLoginFormVisible(state: IState): boolean {
+    return state.isLoginFormVisible;
+  }
+
+  @Action(SetLengthOfGoods)
+  SetLengthOfGoods(context: StateContext<IState>, action: SetLengthOfGoods) {
+    context.patchState({ lengthOfData: action.lengthOfData });
+  }
+
+  @Selector()
+  public static lengthOfData(state: IState): number {
+    return state.lengthOfData;
+  }
+
+  @Action(SetСountOfGoods)
+  SetСountOfGoods(context: StateContext<IState>, action: SetСountOfGoods) {
+    context.patchState({ countOfGoods: action.countOfGoods });
+  }
+
+  @Selector()
+  public static countOfGoods(state: IState): number {
+    return state.countOfGoods;
   }
 }

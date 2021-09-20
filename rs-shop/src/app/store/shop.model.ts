@@ -17,5 +17,8 @@ export interface IState {
   userInfo: IUser,
   token: string,
   totalCost: number,
-  cartItems: IItems[]
+  cartItems: IItems[],
+  isLoginFormVisible: boolean,
+  lengthOfData: number,
+  countOfGoods: number
 }

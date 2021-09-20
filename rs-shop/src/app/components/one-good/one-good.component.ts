@@ -3,12 +3,12 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { IGoodItem } from 'src/app/models/goods.model';
 import Shop from 'src/app/store/shop.state';
-import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SetGoodId } from 'src/app/store/shop.actions';
+import { SetGoodId, SetСountOfGoods } from 'src/app/store/shop.actions';
 import { GoodService } from 'src/app/services/good/good.service';
-import { OneGoodService } from './one-good.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
+import { FavouritesService } from 'src/app/services/favourites/favourites.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-one-good',
@@ -17,36 +17,38 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-car
 })
 export class OneGoodComponent implements OnInit, DoCheck {
 
+  @Select(Shop.goods)
   goods$: Observable<IGoodItem[]>;
+
+  lengthOfData: number;
 
   category: string;
 
   subCategory: string;
 
-  isBtnCartPressed: boolean;
+  start: number = 0;
 
-  isBtnFavouritesPressed: boolean;
+  last: number;
+
+  isBtnVisible: boolean = false;
 
   constructor(
     private store: Store, 
     public goodService: GoodService, 
     private activeRoute: ActivatedRoute, 
-    private router: Router, 
-    private oneGoodService: OneGoodService,
-    private shoppingCartService: ShoppingCartService
+    private router: Router,
+    private shoppingCartService: ShoppingCartService,
+    private favouritesService: FavouritesService
   ) {}
 
   ngOnInit() {
     this.category = this.activeRoute.snapshot.params.category;
     this.subCategory = this.activeRoute.snapshot.params.good;
-    this.isBtnCartPressed = false;
-    this.isBtnFavouritesPressed = false;
   }
 
   ngDoCheck() {
-    this.goods$ = this.store.select(Shop.goods).pipe(
-      map((good:IGoodItem[]) => this.oneGoodService.getSortingGoods(good)),
-    );    
+    this.lengthOfData = this.store.selectSnapshot(Shop.lengthOfData);
+    this.last = this.store.selectSnapshot(Shop.countOfGoods);
   }
 
   navigateToDetailsPage(good: IGoodItem) {
@@ -59,6 +61,10 @@ export class OneGoodComponent implements OnInit, DoCheck {
   }
 
   onClickInFavourite(good: IGoodItem) {
-    this.shoppingCartService.putGoodInFavourite(good.id);
+    this.favouritesService.putGoodInFavourite(good.id);
+  }
+
+  onClickNext() {
+    this.store.dispatch(new SetСountOfGoods(this.last+10));
   }
 }
