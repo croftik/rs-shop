@@ -18,13 +18,13 @@ export interface IUser {
   "orders": [IOrder]
 }
 
-interface IOrder {
+export interface IOrder {
   "items": [IItems],
   "details": IDetails,
   "id": string
 }
 
-interface IItems {
+export interface IItems {
   "id": string,
   "amount": number
 }
@@ -36,4 +36,3 @@ interface IDetails {
   "timeToDeliver": string,
   "comment": string
 }
-
