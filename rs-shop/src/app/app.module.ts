@@ -25,6 +25,7 @@ import { SearchGoodsComponent } from './components/search-goods/search-goods.com
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { PopularGoodsComponent } from './components/popular-goods/popular-goods.component';
 import { FavouritesComponent } from './components/favourites/favourites.component';
+import { WaitListComponent } from './components/wait-list/wait-list.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { FavouritesComponent } from './components/favourites/favourites.componen
     SearchGoodsComponent,
     OrderFormComponent,
     PopularGoodsComponent,
-    FavouritesComponent
+    FavouritesComponent,
+    WaitListComponent
   ],
   imports: [
     BrowserModule,

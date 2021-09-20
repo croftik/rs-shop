@@ -102,6 +102,10 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
     this.headerService.navigateToFavourites();
   }
 
+  onClickWaitList() {
+    this.headerService.navigateToWailList();
+  }
+
   ngDoCheck() {
     this.isCatalogBtnPressed = this.store.selectSnapshot(Shop.isCatalogBtnPressed);
     const userInfo = this.store.selectSnapshot(Shop.userInfo);
@@ -109,6 +113,8 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
     else this.numberOfGoodsInShoppingCart = userInfo.cart.length;
     if (userInfo.favorites[0] === '') this.numberOfFavourites = 0;
     else this.numberOfFavourites = userInfo.favorites.length;
+    if (!userInfo.orders[0]) this.numberOfGoodsInWaitingList = 0;
+    else this.numberOfGoodsInWaitingList = userInfo.orders.length;
   }
 
   ngOnDestroy(): void {

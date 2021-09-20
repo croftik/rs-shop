@@ -95,6 +95,10 @@ export class HeaderService {
     this.router.navigate(['favourites']);
   }
 
+  navigateToWailList() {
+    this.router.navigate(['wait-list']);
+  }
+
   searchGoods(value: string) {
     this.store.dispatch(new SetQueryParam(value));
   }

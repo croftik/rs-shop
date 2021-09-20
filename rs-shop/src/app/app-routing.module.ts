@@ -5,9 +5,11 @@ import { DetailsComponent } from './components/details/details.component';
 import { FavouritesComponent } from './components/favourites/favourites.component';
 import { GoodsComponent } from './components/goods/goods.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { WaitListComponent } from './components/wait-list/wait-list.component';
 
 const routes: Routes = [
   { path: 'order', component: ShoppingCartComponent },
+  { path: 'wait-list', component: WaitListComponent },
   { path: 'favourites', component: FavouritesComponent },
   { path: ':category', component: CategoryComponent },
   { path: ':category/:good', component: GoodsComponent },

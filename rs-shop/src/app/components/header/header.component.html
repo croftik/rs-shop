@@ -59,7 +59,7 @@
       
       <form class="form_search" [formGroup]="formForSearchGoods">
         <img src="../../../assets/icons/search.png" class="img_icon-input">
-        <input placeholder="Поиск товаров" class="input_search" formControlName="searchInput">
+        <input placeholder="Поиск товаров" class="input_search" formControlName="searchInput" type="search">
       </form>
       
       <app-search-goods></app-search-goods>
@@ -89,10 +89,10 @@
               <span class="count-of-goods_number">{{numberOfFavourites}}</span>
             </div>
           </li>
-          <li class="account-block_more__list">
+          <li class="account-block_more__list" (click)="onClickWaitList()">
             <svg class="ProfileItem_icon__3Gmbu" width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.86393 4C7.83451 4 7 4.83451 7 5.86392V7.39289C7 7.92333 7.21071 8.43203 7.58579 8.80711L10.5287 11.75L7.58579 14.6929C7.21071 15.068 7 15.5767 7 16.1071V17.6361C7 18.6655 7.83451 19.5 8.86392 19.5H15.404C16.4334 19.5 17.2679 18.6655 17.2679 17.6361V16.1071C17.2679 15.5767 17.0572 15.068 16.6821 14.6929L13.7393 11.75L16.6821 8.80711C17.0572 8.43203 17.2679 7.92333 17.2679 7.39289V5.86392C17.2679 4.83451 16.4334 4 15.404 4H8.86393ZM8.54782 5.54782H15.7201V7.86658L12.5 11.0867V12.4133L15.7201 15.6334V18.0503L12.134 15.3607L8.54782 18.0503V15.6334L11.5 12.4133V11.0867L8.54782 7.86658V5.54782Z"></path></svg>
             <span>{{accountInfo.List}}</span>
-            <div class="count-of-goods" *ngIf="(numberOfGoodsInWaitingList === 0) ? true : false">
+            <div class="count-of-goods" *ngIf="(numberOfGoodsInWaitingList === 0) ? false : true">
               <span class="count-of-goods_number">{{numberOfGoodsInWaitingList}}</span>
             </div>
           </li>

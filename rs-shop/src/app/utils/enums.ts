@@ -26,3 +26,11 @@ export enum TableHeader {
   Delivery = 'Доставка',
   Cost = 'Стоимость'
 }
+
+export enum WaitList {
+  Good = 'Товар',
+  Info = 'Информация о доставке',
+  Comment = 'Комментарий к заказу',
+  Cost = 'Сумма заказа',
+  Action = 'Действие'
+}
