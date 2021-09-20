@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { IUser } from 'src/app/models/user.model';
 import { HttpService } from 'src/app/services/http/http.service';
-import { SetQueryParam, SetSearchResults } from 'src/app/store/shop.actions';
+import { SetLoginFormVisible, SetQueryParam, SetUserInfo } from 'src/app/store/shop.actions';
+import Shop from 'src/app/store/shop.state';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +24,8 @@ export class HeaderService {
 
   stateAccount: string;
 
-  isLoginFormVisible: boolean;
+  @Select(Shop.isLoginFormVisible)
+  isLoginFormVisible$: Observable<boolean>;
 
   isUserLogged: boolean
 
@@ -29,7 +33,6 @@ export class HeaderService {
     this.isExpandedContacts = false;
     this.isExpandedPayment = false;
     this.isExpandedAccount = false;
-    this.isLoginFormVisible = false;
     this.stateAccount = 'initialAccount';
     this.statePayment = 'initialPayment';
     this.stateContacts = 'initialContacts';
@@ -76,7 +79,7 @@ export class HeaderService {
   }
 
   showLoginForm() {
-    this.isLoginFormVisible = true;
+    this.store.dispatch(new SetLoginFormVisible(true));
     if (this.isExpandedAccount) {
       this.isExpandedAccount = false;
       this.stateAccount = 'initialContacts';
@@ -84,7 +87,7 @@ export class HeaderService {
   }
 
   showShoppingCart() {
-    this.router.navigate(['order']);
+    localStorage.getItem('user') ? this.router.navigate(['order']) : this.store.dispatch(new SetLoginFormVisible(true));
   }
 
   navigateToMainPage() {
@@ -92,11 +95,11 @@ export class HeaderService {
   }
 
   navigateToFavourites() {
-    this.router.navigate(['favourites']);
+    localStorage.getItem('user') ? this.router.navigate(['favourites']) : this.store.dispatch(new SetLoginFormVisible(true));
   }
 
   navigateToWailList() {
-    this.router.navigate(['wait-list']);
+    localStorage.getItem('user') ? this.router.navigate(['wait-list']) : this.store.dispatch(new SetLoginFormVisible(true));
   }
 
   searchGoods(value: string) {
@@ -104,7 +107,7 @@ export class HeaderService {
   }
 
   hideLoginForm() {
-    this.isLoginFormVisible = false;
+    this.store.dispatch(new SetLoginFormVisible(false));
   }
 
   changeImg() {
@@ -114,6 +117,28 @@ export class HeaderService {
   signOut() {
     this.changeImg();
     localStorage.removeItem('user');
+    const userInfo:IUser = {
+      "firstName": '',
+      "lastName": '',
+      "cart": [''],
+      "favorites": [''],
+      "orders": [{
+        "items": [{
+          "id": '',
+          "amount": 0
+        }],
+        "details": {
+          "name": '',
+          "address": '',
+          "phone": '',
+          "timeToDeliver": '',
+          "comment": ''
+        },
+        "id": ''
+      }]
+    };
+    this.store.dispatch(new SetUserInfo(userInfo));
+    this.navigateToMainPage();
   }
 }
 

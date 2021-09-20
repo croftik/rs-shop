@@ -119,7 +119,7 @@
   </div>
   
   <app-catalog *ngIf="isCatalogBtnPressed"></app-catalog>
-  <app-login-form *ngIf="headerService.isLoginFormVisible"></app-login-form>
+  <app-login-form *ngIf="headerService.isLoginFormVisible$ | async"></app-login-form>
 </header>
 
 

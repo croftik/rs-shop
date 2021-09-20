@@ -10,16 +10,13 @@ import { HeaderService } from '../header/header.service';
 })
 export class LoginFormService {
 
+  token: string = '';
+
   constructor(private httpService: HttpService, private headerService: HeaderService, private store: Store) { }
 
   register(signUpData: ISignUpData) {
-    const token = this.createToken();
-    this.httpService.postNewUser(signUpData, token).subscribe((data:any) => this.setToken(data.token));
+    this.httpService.postNewUser(signUpData).subscribe((data:any) => this.setToken(data.token));
     this.changeUI();
-  }
-
-  createToken(): string {
-    return Math.random().toString(16);
   }
 
   login(signInData: ISignInData) {
@@ -35,5 +32,15 @@ export class LoginFormService {
   setToken(token: string) {
     localStorage.setItem('user', token);
     this.store.dispatch(new SetToken(token));
+  }
+
+  isAuthenticated(): boolean {
+    if (localStorage.getItem('user')) return true;
+    else return false;
+  }
+
+  getToken(): string {
+    this.token = <string>localStorage.getItem('user');
+    return this.token;
   }
 }

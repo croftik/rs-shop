@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
-import { SetToken } from 'src/app/store/shop.actions';
+import { SetLoginFormVisible, SetToken } from 'src/app/store/shop.actions';
 import { HttpService } from '../http/http.service';
 
 @Injectable({
@@ -14,9 +14,12 @@ export class FavouritesService {
   constructor(private httpService: HttpService, private store: Store) { }
 
   putGoodInFavourite(id: string) {
-    this.httpService.postInFavourite(id).pipe(
-      tap(data => this.store.dispatch(new SetToken(this.token)))
-    ).subscribe();
+    if (localStorage.getItem('user')) {
+      this.httpService.postInFavourite(id).pipe(
+        tap(data => this.store.dispatch(new SetToken(this.token)))
+      ).subscribe();
+    }
+    else this.store.dispatch(new SetLoginFormVisible(true));    
   }
 
   deleteGoodFromFavourites(id: string) {
