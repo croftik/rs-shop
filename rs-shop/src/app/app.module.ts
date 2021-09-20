@@ -8,7 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxsModule } from '@ngxs/store';
 import Shop from './store/shop.state';
 import { environment } from 'src/environments/environment';
@@ -26,6 +26,8 @@ import { OrderFormComponent } from './components/order-form/order-form.component
 import { PopularGoodsComponent } from './components/popular-goods/popular-goods.component';
 import { FavouritesComponent } from './components/favourites/favourites.component';
 import { WaitListComponent } from './components/wait-list/wait-list.component';
+import { HttpService } from './services/http/http.service';
+import { TokenInterceptor } from './services/interceptor/app.interceptor';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,12 @@ import { WaitListComponent } from './components/wait-list/wait-list.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    HttpService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

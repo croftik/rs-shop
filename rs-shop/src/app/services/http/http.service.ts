@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { baseUrl } from 'src/app/utils/data';
+import { HttpClient } from '@angular/common/http';
 import { ISignInData, ISignUpData } from 'src/app/models/user.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,55 +11,49 @@ export class HttpService {
   constructor(private http: HttpClient) {}
 
   getData(url: string) {
-    return this.http.get(`${baseUrl}/${url}`);
+    return this.http.get(`/${url}`);
   }
 
-  postNewUser(body: ISignUpData, token: string) {
-    const myHeaders = new HttpHeaders().set('token', token);
-    return this.http.post(`${baseUrl}/users/register`, body, {headers: myHeaders});
+  postNewUser(body: ISignUpData) {
+    return this.http.post(`/users/register`, body);
   }
 
-  getUserInfo(token: string) {
-    const myHeaders = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${baseUrl}/users/userInfo`, {headers: myHeaders});
+  getUserInfo() {
+    return this.http.get(`/users/userInfo`);
   }
 
   postUser(body: ISignInData) {
-    return this.http.post(`${baseUrl}/users/login`, body);
+    return this.http.post(`/users/login`, body);
   }
 
   postInCart(id: string) {
     const body = {
       "id": id
     }
-    return this.http.post(`${baseUrl}/users/cart`, body, {headers: this.getHeadersAuthorization()});
+    return this.http.post(`/users/cart`, body);
   }
 
   deleteGoodFromCart(id: string) {
-    return this.http.delete(`${baseUrl}/users/cart?id=${id}`, {headers: this.getHeadersAuthorization()});
+    return this.http.delete(`/users/cart?id=${id}`);
   }
 
   deleteGoodFromFavourite(id: string) {
-    return this.http.delete(`${baseUrl}/users/favorites?id=${id}`, {headers: this.getHeadersAuthorization()});
+    return this.http.delete(`/users/favorites?id=${id}`);
   }
 
   getToken(): string {
     return <string>localStorage.getItem('user');
   }
 
-  getHeadersAuthorization(): HttpHeaders {
-    return new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-  }
-
   postInFavourite(id: string) {
     const body = {
       "id": id
     }
-    return this.http.post(`${baseUrl}/users/favorites`, body, {headers: this.getHeadersAuthorization()});
+    return this.http.post(`/users/favorites`, body);
   }
 
   postOrder(body: any) {
-    return this.http.post(`${baseUrl}/users/order`, body, {headers: this.getHeadersAuthorization()});
+    return this.http.post(`/users/order`, body);
   }
 
 }
