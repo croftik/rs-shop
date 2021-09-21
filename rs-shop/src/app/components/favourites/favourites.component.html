@@ -9,7 +9,7 @@
         <span class="favourite__item_name">{{good.name}}</span>
         <span class="favourite__item_rating">{{good.rating | formatRating}}</span>
         <span class="favourite__item_price">{{good.price | formatPrice}} p.</span>
-        <button class="btn-cart" (click)="onClickInCart(good)">В корзину</button>
+        <button class="btn-cart" (click)="onClickInCart(good)" [ngClass]="good.isInCart ? 'btn-in-cart' : 'btn-cart'">{{good.isInCart ? 'В корзине' : 'В корзину'}}</button>
         <button class="btn-delete" (click)="onClickDeleteBtn(good)">Удалить из списка</button>
       </div>
     </li>

@@ -62,7 +62,7 @@ export class OneGoodComponent implements OnInit, DoCheck {
   }
 
   onClickInFavourite(good: IGoodItem) {
-    this.favouritesService.putGoodInFavourite(good.id);
+    good.isFavorite ? this.navService.navigateToFavourites() : this.favouritesService.putGoodInFavourite(good.id);
   }
 
   onClickNext() {

@@ -4,6 +4,7 @@ import { IGoodItem } from 'src/app/models/goods.model';
 import { IItems } from 'src/app/models/user.model';
 import { FavouritesService } from 'src/app/services/favourites/favourites.service';
 import { HttpService } from 'src/app/services/http/http.service';
+import { NavigationService } from 'src/app/services/navigation/navigation.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import { SetItemsInCart, SetTotalCost } from 'src/app/store/shop.actions';
 import Shop from 'src/app/store/shop.state';
@@ -32,7 +33,8 @@ export class ShoppingCartComponent implements OnInit {
     private httpService: HttpService, 
     private store: Store, 
     private shoppingCartService: ShoppingCartService, 
-    private favouritesService: FavouritesService
+    private favouritesService: FavouritesService,
+    private navService: NavigationService,
   ) { }
 
   ngOnInit() {
@@ -56,7 +58,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   onClickInFavourite(good: IGoodItem) {
-    this.favouritesService.putGoodInFavourite(good.id);
+    good.isFavorite ? this.navService.navigateToFavourites() : this.favouritesService.putGoodInFavourite(good.id);
   }
 
   onClickPlusBtn(good: IGoodItem) {
@@ -82,6 +84,7 @@ export class ShoppingCartComponent implements OnInit {
   onClickConfirmBtn() {
     this.isOrderFormVisible = true;
     this.store.dispatch(new SetItemsInCart(this.items));
+    this.store.dispatch(new SetTotalCost(this.totalCost));
   }
 
 }

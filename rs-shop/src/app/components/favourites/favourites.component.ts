@@ -3,6 +3,7 @@ import { Store } from '@ngxs/store';
 import { IGoodItem } from 'src/app/models/goods.model';
 import { FavouritesService } from 'src/app/services/favourites/favourites.service';
 import { HttpService } from 'src/app/services/http/http.service';
+import { NavigationService } from 'src/app/services/navigation/navigation.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import Shop from 'src/app/store/shop.state';
 
@@ -15,7 +16,13 @@ export class FavouritesComponent implements OnInit {
 
   goods: Array<IGoodItem> = [];
   
-  constructor(private httpService: HttpService, private store: Store, private shoppingCartService: ShoppingCartService, private favouritesService: FavouritesService) { }
+  constructor (
+    private httpService: HttpService, 
+    private navService: NavigationService, 
+    private store: Store, 
+    private shoppingCartService: ShoppingCartService, 
+    private favouritesService: FavouritesService
+  ) { }
 
   ngOnInit() {
     const favorite = this.store.selectSnapshot(Shop.userInfo).favorites;
@@ -27,7 +34,7 @@ export class FavouritesComponent implements OnInit {
   }
 
   onClickInCart(good: IGoodItem) {
-    this.shoppingCartService.putGoodInCart(good.id);
+    good.isInCart ? this.navService.navigateToCart() : this.shoppingCartService.putGoodInCart(good.id);
   }
 
   onClickDeleteBtn(good: IGoodItem) {

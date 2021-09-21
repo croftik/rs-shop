@@ -31,7 +31,8 @@
 }
 
 .btn-delete,
-.btn-in-favourite {
+.btn-in-favourite,
+.btn-fav {
   background-color: transparent;
   border: none;
   &:hover {
@@ -52,6 +53,10 @@
   &:hover {
     color:rgb(226, 192, 0);
   }
+}
+
+.btn-fav {
+  color:rgb(226, 192, 0);
 }
 
 .img-good {
@@ -102,6 +107,7 @@
 
 .block2 {
   align-items: center;
+  padding-right: 15px;
 }
 
 .btn-quantity {

@@ -11,7 +11,7 @@
       <span class="table-header">{{tableHeader.Description}}</span>
       <span class="table-header">{{tableHeader.Quantity}}</span>
       <span class="table-header">{{tableHeader.Delivery}}</span>
-      <span class="table-header">{{tableHeader.Cost}}</span>        
+      <span class="table-header">{{tableHeader.Cost}}, p.</span>        
     </div>
     <div class="table" *ngFor="let good of goods" id="{{good.id}}">
       <div class="wrapper-block" >
@@ -21,7 +21,7 @@
         </div>
         <div class="block2">
           <span class="title-good">{{good.name}}</span>
-          <button class="btn-in-favourite" (click)="onClickInFavourite(good)">★ Добавить в избранное</button>
+          <button [ngClass]="good.isFavorite ? 'btn-in-favourite' : 'btn-fav'" (click)="onClickInFavourite(good)">{{good.isFavorite ? '★ В избранном' : '☆ Добавить в избранное'}}</button>
         </div>
       </div>
   

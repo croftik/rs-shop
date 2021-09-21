@@ -28,8 +28,8 @@
       </div>
       <span class="price-good">{{currentGood$.price | formatPrice}} p.</span>
       <span class="rating-good">{{currentGood$.rating | formatRating}}</span>
-      <button class="btn-cart" (click)="onClickInCart(currentGood$)">В корзину</button>
-      <button class="btn-favourite" (click)="onClickInFavourite(currentGood$)">В избранное</button>
+      <button class="btn-cart" [ngClass]="currentGood$.isInCart ? 'btn-in-cart' : 'btn-cart'" (click)="onClickInCart(currentGood$)">{{currentGood$.isInCart ? 'В корзине' : 'В корзину'}}</button>
+      <button class="btn-favourite" [ngClass]="currentGood$.isFavorite ? 'btn-in-favourite' : 'btn-favourite'" (click)="onClickInFavourite(currentGood$)">{{currentGood$.isFavorite ? 'В избранном' : 'В избранное'}}</button>
     </div>
   </div>
 </main>
