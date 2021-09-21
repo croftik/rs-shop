@@ -7,6 +7,7 @@ import { debounceTime, distinctUntilChanged, map, takeUntil } from 'rxjs/operato
 import { ICategories } from 'src/app/models/categories.model';
 import IContacts from 'src/app/models/contacts.model';
 import { GoodService } from 'src/app/services/good/good.service';
+import { NavigationService } from 'src/app/services/navigation/navigation.service';
 import { SetCatalog } from 'src/app/store/shop.actions';
 import Shop from 'src/app/store/shop.state';
 import { contacts } from 'src/app/utils/data';
@@ -70,7 +71,13 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
 
   private unsubscribe$ = new Subject();
 
-  constructor(public headerService: HeaderService, public goodService: GoodService, private store: Store, public catalogService: CatalogService) {
+  constructor(
+    public headerService: HeaderService, 
+    public goodService: GoodService, 
+    private store: Store, 
+    public catalogService: CatalogService, 
+    public navService: NavigationService
+  ) {
     this.contacts = contacts;
   }
 
@@ -99,11 +106,19 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   onClickFavourites() {
-    this.headerService.navigateToFavourites();
+    this.navService.navigateToFavourites();
   }
 
   onClickWaitList() {
-    this.headerService.navigateToWailList();
+    this.navService.navigateToWailList();
+  }
+
+  onClickCart() {
+    this.navService.navigateToCart();
+  }
+
+  onClickLogo() {
+    this.navService.navigateToMainPage();
   }
 
   ngDoCheck() {
@@ -113,7 +128,7 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
     else this.numberOfGoodsInShoppingCart = userInfo.cart.length;
     if (userInfo.favorites[0] === '') this.numberOfFavourites = 0;
     else this.numberOfFavourites = userInfo.favorites.length;
-    if (!userInfo.orders[0]) this.numberOfGoodsInWaitingList = 0;
+    if (!userInfo.orders[0] || !userInfo.orders[0].id) this.numberOfGoodsInWaitingList = 0;
     else this.numberOfGoodsInWaitingList = userInfo.orders.length;
   }
 

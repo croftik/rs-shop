@@ -28,7 +28,12 @@ export class ShoppingCartComponent implements OnInit {
 
   isOrderFormVisible: boolean = false;
 
-  constructor(private httpService: HttpService, private store: Store, private shoppingCartService: ShoppingCartService, private favouritesService: FavouritesService) { }
+  constructor (
+    private httpService: HttpService, 
+    private store: Store, 
+    private shoppingCartService: ShoppingCartService, 
+    private favouritesService: FavouritesService
+  ) { }
 
   ngOnInit() {
     this.cart = this.store.selectSnapshot(Shop.userInfo).cart;

@@ -9,6 +9,7 @@ import { GoodService } from 'src/app/services/good/good.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart/shopping-cart.service';
 import { FavouritesService } from 'src/app/services/favourites/favourites.service';
 import { map } from 'rxjs/operators';
+import { NavigationService } from 'src/app/services/navigation/navigation.service';
 
 @Component({
   selector: 'app-one-good',
@@ -35,10 +36,10 @@ export class OneGoodComponent implements OnInit, DoCheck {
   constructor(
     private store: Store, 
     public goodService: GoodService, 
-    private activeRoute: ActivatedRoute, 
-    private router: Router,
+    private activeRoute: ActivatedRoute,
     private shoppingCartService: ShoppingCartService,
-    private favouritesService: FavouritesService
+    private favouritesService: FavouritesService,
+    private navService: NavigationService
   ) {}
 
   ngOnInit() {
@@ -53,11 +54,11 @@ export class OneGoodComponent implements OnInit, DoCheck {
 
   navigateToDetailsPage(good: IGoodItem) {
     this.store.dispatch(new SetGoodId(good.id));
-    this.router.navigate([`${this.category}/${this.subCategory}/${good.id}`]);
+    this.navService.navigateToDetails(this.category, this.subCategory, good.id);
   }
 
   onClickInCart(good: IGoodItem) {
-    this.shoppingCartService.putGoodInCart(good.id);
+    good.isInCart ? this.navService.navigateToCart() : this.shoppingCartService.putGoodInCart(good.id);
   }
 
   onClickInFavourite(good: IGoodItem) {

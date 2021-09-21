@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { ICategories, ISubCategory } from 'src/app/models/categories.model';
 import { HttpService } from 'src/app/services/http/http.service';
+import { NavigationService } from 'src/app/services/navigation/navigation.service';
 import { SetCatalog, SetCurrentCategory, SetCurrentSubCategory, SetGoods, SetСountOfGoods } from 'src/app/store/shop.actions';
 import Shop from 'src/app/store/shop.state';
 
@@ -13,7 +14,7 @@ export class CatalogService {
 
   subCategory: string = '';
 
-  constructor(private store: Store, private router: Router, private httpService: HttpService) { }
+  constructor(private store: Store, private navService: NavigationService) { }
 
   setNewCurrentCategory(newCategory: ICategories) {
     const newCurrentCategory = this.store.selectSnapshot(Shop.categories).filter(category => category.id === newCategory.id)[0];
@@ -23,7 +24,7 @@ export class CatalogService {
   showSubCategoriesInCategory(category: ICategories) {
     this.setNewCurrentCategory(category);
     this.putAwayCatalog();
-    this.router.navigate([`${category.id}`]);
+    this.navService.navigateToCategory(category.id);
   }
 
   showAllGoodsInSubCategory(subCategory: ISubCategory) {
@@ -31,7 +32,7 @@ export class CatalogService {
     const categoryId = this.store.selectSnapshot(Shop.currentCategory).id;
     this.putAwayCatalog();
     this.store.dispatch(new SetGoods(categoryId,subCategory.id));
-    this.router.navigate([`${categoryId}/${subCategory.id}`]);
+    this.navService.navigateToSubCategory(categoryId, subCategory.id);
     this.store.dispatch(new SetСountOfGoods(10));
   }
 
