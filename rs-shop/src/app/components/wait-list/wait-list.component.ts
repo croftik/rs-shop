@@ -51,4 +51,8 @@ export class WaitListComponent implements OnInit {
     return item.price*amount;
   }
 
+  onClickDeleteOrderBtn(good: IOrder) {
+    this.waitListService.deleteOrder(good.id);
+  }
+
 }

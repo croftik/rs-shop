@@ -41,6 +41,10 @@ export class HttpService {
     return this.http.delete(`/users/favorites?id=${id}`);
   }
 
+  deleteOrder(id: string) {
+    return this.http.delete(`/users/order?id=${id}`);
+  }
+
   getToken(): string {
     return <string>localStorage.getItem('user');
   }
@@ -53,7 +57,7 @@ export class HttpService {
   }
 
   postOrder(body: any) {
-    return this.http.post(`/users/order`, body);
+    return this.http.post(`/users/order`, body, {responseType: 'text'});
   }
 
 }

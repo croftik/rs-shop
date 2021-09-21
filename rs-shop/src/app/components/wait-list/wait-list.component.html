@@ -7,7 +7,7 @@
     <span class="table-header">{{waitList.Cost}}</span>
     <span class="table-header">{{waitList.Action}}</span>
   </div>
-  <div class="table" *ngFor="let good of goodsInWaitList">
+  <div class="table" *ngFor="let good of goodsInWaitList" id="{{good.id}}">
     <div class="wrapper-block">
       <div class="wrapper-block__order-item" *ngFor="let item of good.items">
         <img src="{{setSrc(item.id)}}" class="img-good">
@@ -31,7 +31,7 @@
       <strong>1234.55 p.</strong>
     </div>
     <div class="action">
-      <button class="btn-cancel">Отменить заказ</button>
+      <button class="btn-cancel" (click)="onClickDeleteOrderBtn(good)">Отменить заказ</button>
       <button class="btn-edit">Редактировать заказ</button>
     </div>
   </div>
