@@ -27,7 +27,7 @@ import { PopularGoodsComponent } from './components/popular-goods/popular-goods.
 import { FavouritesComponent } from './components/favourites/favourites.component';
 import { WaitListComponent } from './components/wait-list/wait-list.component';
 import { HttpService } from './services/http/http.service';
-import { TokenInterceptor } from './services/interceptor/app.interceptor';
+import { TokenInterceptor } from './services/interseptor/interceptor';
 
 @NgModule({
   declarations: [
