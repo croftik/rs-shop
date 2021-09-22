@@ -1,3 +1,5 @@
+@import '~bootstrap/scss/bootstrap';
+
 *{
   margin: 0;
   padding: 0;
@@ -5,13 +7,23 @@
   font-family: "Roboto", sans-serif;
 }
 
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: drop-shadow(2px 4px 6px black);
+}
+
 li {
   list-style-type: none;
+}
+
+ul {
+  margin-bottom: 0;
 }
 
 button,
 input {
   outline: none;
+  font-size: 14px;
   &:hover {
     cursor: pointer;
   }
@@ -59,4 +71,20 @@ input {
     background-color: transparent;
     text-decoration: underline;
   }
+}
+
+.visually-hidden {
+  display: none;
+}
+
+.carousel-indicators li {
+  background-color: black;
+}
+
+a {
+  color: black;
+}
+
+h1 {
+  font-weight: 700;
 }

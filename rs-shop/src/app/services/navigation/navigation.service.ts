@@ -11,7 +11,7 @@ export class NavigationService {
   constructor(private router: Router, private store: Store) { }
 
   navigateToMainPage() {
-    this.router.navigate(['']);
+    this.router.navigate(['main']);
   }
 
   navigateToFavourites() {

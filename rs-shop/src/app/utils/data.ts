@@ -54,3 +54,5 @@ export const footerInfo = [
 ];
 
 export const baseUrl = 'http://localhost:3004';
+
+export const baseSrc = '../../../assets/slider/';

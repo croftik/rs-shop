@@ -28,6 +28,8 @@ import { FavouritesComponent } from './components/favourites/favourites.componen
 import { WaitListComponent } from './components/wait-list/wait-list.component';
 import { HttpService } from './services/http/http.service';
 import { TokenInterceptor } from './services/interseptor/interceptor';
+import { SliderComponent } from './components/slider/slider.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { TokenInterceptor } from './services/interseptor/interceptor';
     OrderFormComponent,
     PopularGoodsComponent,
     FavouritesComponent,
-    WaitListComponent
+    WaitListComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ import { TokenInterceptor } from './services/interseptor/interceptor';
       developmentMode: !environment.production,
     }),
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     HttpService, {
