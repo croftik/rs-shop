@@ -8,6 +8,7 @@ import { IGoodItem } from "../models/goods.model";
 import { map, tap } from "rxjs/operators";
 import { initialState } from "../utils/utilities";
 import { IItems, IUser } from "../models/user.model";
+import { GoodService } from "../services/good/good.service";
 
 @State<IState>({
   name: 'Shop',
@@ -17,7 +18,7 @@ import { IItems, IUser } from "../models/user.model";
 @Injectable()
 
 export default class Shop {
-  constructor(public httpService: HttpService) {}
+  constructor(private httpService: HttpService, private goodService: GoodService) {}
 
   @Action(SetCategories)
   setCategories(context : StateContext<IState>, action: SetCategories) {
@@ -53,8 +54,9 @@ export default class Shop {
   SetGoods(context : StateContext<IState>, action: SetGoods) {
     return this.httpService.getData(`goods/category/${action.category}/${action.subCategory}`).pipe(
       tap((data:any) => {
-        context.patchState({goods:data})
-        context.dispatch(new SetLengthOfGoods(data.length));
+        const sortingData = this.goodService.getSortingGoods(data);
+        context.patchState({goods:sortingData})
+        context.dispatch(new SetLengthOfGoods(sortingData.length));
       })
     );
   }
