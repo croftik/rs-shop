@@ -30,7 +30,7 @@ export class OrderFormComponent implements OnInit {
       "entrance": new FormControl("", [Validators.min(1)]),
       "floor": new FormControl("", [Validators.min(1)]),
       "flat": new FormControl("", [Validators.min(1)]),
-      "phone": new FormControl("+375", [Validators.required, Validators.minLength(13), Validators.maxLength(13)]),
+      "phone": new FormControl("+375", [Validators.required, Validators.pattern('^\\+[0-9]{12,12}')]),
       "date": new FormControl("", [Validators.required]),
       "comment": new FormControl("", [Validators.maxLength(250)])
     });
