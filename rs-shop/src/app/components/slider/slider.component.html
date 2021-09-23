@@ -1,9 +1,7 @@
-<main class="main">
-  <ngb-carousel #carousel [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
-    <ng-template ngbSlide *ngFor="let img of images">
-      <div class="picsum-img-wrapper">
-        <img src="{{img}}" class="slider__item" (click)="clickOnSliderItem($event)" id="{{img}}">
-      </div>
-    </ng-template>
-  </ngb-carousel>
-</main>
+<ngb-carousel #carousel [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
+  <ng-template ngbSlide *ngFor="let img of images">
+    <div class="picsum-img-wrapper">
+      <img src="{{img}}" class="slider__item" (click)="clickOnSliderItem($event)" id="{{img}}">
+    </div>
+  </ng-template>
+</ngb-carousel>

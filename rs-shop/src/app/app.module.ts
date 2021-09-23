@@ -31,6 +31,7 @@ import { TokenInterceptor } from './services/interseptor/interceptor';
 import { SliderComponent } from './components/slider/slider.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OrderEditComponent } from './components/order-edit/order-edit.component';
+import { MainComponent } from './components/main/main.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { OrderEditComponent } from './components/order-edit/order-edit.component
     FavouritesComponent,
     WaitListComponent,
     SliderComponent,
-    OrderEditComponent
+    OrderEditComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
