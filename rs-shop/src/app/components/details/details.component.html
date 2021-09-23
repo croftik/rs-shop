@@ -8,13 +8,15 @@
   </div>
   <span class="category-title">{{currentGood$.name}}</span>
   <div class="wrapper-details">
-      <div class="wrapper-image">
-        <div class="wrapper-one-image" *ngFor="let image of currentGood$.imageUrls">
-          <img src="{{image}}" class="img-small">
+     <div class="wrapper-image">
+        <img src="../../../assets/icons/right-arrow.png" class="arrow_up" (click)="onClickUpBtn()">
+        <div class="wrapper-one-image " [ngClass]="i === index ? 'img_active':''" *ngFor="let image of currentGood$.imageUrls; index as i">
+          <img src="{{image}}" class="img-small" id="{{i}}">
         </div>
+        <img src="../../../assets/icons/right-arrow.png" class="arrow_down" (click)="onClickDownBtn()">
       </div>
       <div class="wrapper-main-image">
-        <img src="{{currentGood$.imageUrls[0]}}">
+        <img src="{{mainImg}}">
         <img src="../../../assets/icons/popular.png" class="popular-goods__img_label" *ngIf="currentGood$.rating === 5 ? true : false">
       </div>
     <div class="wrapper-description">

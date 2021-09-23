@@ -14,7 +14,6 @@ export class SliderService {
 
   openDetailsPage(event: Event) {
     const id = <string>(<HTMLElement>(event.target)).id;
-    console.log(id)
     let categoryId: string = '';
     let subCategoryId: string  = '';
     let goodId: string = '';

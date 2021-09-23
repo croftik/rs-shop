@@ -119,3 +119,27 @@
   right: 0;
   top: 0;
 }
+
+.img_active {
+  box-shadow: 0 2px 4px rgb(255 24 0 / 69%);
+}
+
+.arrow_down,
+.arrow_up {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  &:hover {
+    cursor: pointer;
+    filter: drop-shadow(2px 4px 6px blue);
+  }
+}
+
+.arrow_down {
+  transform: rotate(90deg);
+}
+
+.arrow_up {
+  transform: rotate(-90deg);
+  margin-bottom: 10px;
+}
