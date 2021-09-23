@@ -1,9 +1,6 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { ICategories, ISubCategory } from 'src/app/models/categories.model';
-import { IGoodItem } from 'src/app/models/goods.model';
 import Shop from 'src/app/store/shop.state';
 import { GoodsService } from './goods.service';
 

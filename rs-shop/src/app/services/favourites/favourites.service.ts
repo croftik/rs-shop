@@ -17,7 +17,7 @@ export class FavouritesService {
   putGoodInFavourite(id: string) {
     if (localStorage.getItem('user')) {
       this.httpService.postInFavourite(id).pipe(
-        tap(data => {
+        tap(() => {
           this.store.dispatch(new SetToken(this.token));
           this.goodService.updateGoodsInState();
         })
@@ -28,7 +28,7 @@ export class FavouritesService {
 
   deleteGoodFromFavourites(id: string) {
     this.httpService.deleteGoodFromFavourite(id).pipe(
-      tap(data => {
+      tap(() => {
         this.store.dispatch(new SetToken(this.token));
         this.goodService.updateGoodsInState();
       })

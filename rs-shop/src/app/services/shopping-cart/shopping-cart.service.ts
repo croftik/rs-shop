@@ -17,7 +17,7 @@ export class ShoppingCartService {
   putGoodInCart(id: string) {
     if (localStorage.getItem('user')) {
       this.httpService.postInCart(id).pipe(
-        tap(data => {
+        tap(() => {
           this.store.dispatch(new SetToken(this.token));
           this.goodService.updateGoodsInState();
         })
@@ -28,7 +28,7 @@ export class ShoppingCartService {
 
   deleteGoodFromCart(id: string) {
     this.httpService.deleteGoodFromCart(id).pipe(
-      tap(data => {
+      tap(() => {
         this.store.dispatch(new SetToken(this.token));
         this.goodService.updateGoodsInState();
       })
