@@ -47,5 +47,4 @@ export class DetailsComponent implements OnInit, DoCheck {
     good.isFavorite ? this.navService.navigateToFavourites() : this.favouritesService.putGoodInFavourite(good.id);
     this.store.dispatch(new SetGoodId(good.id));
   }
-
 }
