@@ -82,6 +82,15 @@ export class ShoppingCartComponent implements OnInit {
 
   onClickConfirmBtn() {
     this.isOrderFormVisible = true;
+    let good = document.querySelectorAll('.quantity');
+    good.forEach(el => {
+      const amount = +<string>(el.textContent);
+      const [,id] = el.id.split('_');
+      this.items.push({
+        "id": id,
+        "amount": amount
+      })
+    })
     this.store.dispatch(new SetItemsInCart(this.items));
     this.store.dispatch(new SetTotalCost(+(this.totalCost.toFixed(2))));
   }
