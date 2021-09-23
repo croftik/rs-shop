@@ -1,0 +1,46 @@
+<div class="order">
+  <h4 class="order__title">Редактирование заказа</h4>
+  <form class="order__form" id="order" [formGroup]="formOrderEdit">
+    <div class="order__form-wrapper">
+      <span class="order__form-title">ФИО:</span>
+      <span class="error" *ngIf="formOrderEdit.controls['surname'].invalid && formOrderEdit.controls['surname'].touched">Поле для обязательного заполнения</span>
+      <input type="text" class="order__form-input_fio" placeholder="Фамилия" formControlName="surname">
+      <span class="error" *ngIf="formOrderEdit.controls['name'].invalid && formOrderEdit.controls['name'].touched">Поле для обязательного заполнения</span>
+      <input type="text" class="order__form-input_fio" placeholder="Имя" formControlName="name">
+      <span class="error" *ngIf="formOrderEdit.controls['fathername'].invalid && formOrderEdit.controls['fathername'].touched">Поле для обязательного заполнения</span>
+      <input type="text" class="order__form-input_fio" placeholder="Отчество" formControlName="fathername">
+    </div>
+    <div class="order__form-wrapper">
+      <span class="order__form-title">Адрес доставки:</span>
+      <span class="error" *ngIf="formOrderEdit.controls['city'].invalid && formOrderEdit.controls['city'].touched">Поле для обязательного заполнения</span>
+      <input type="text" class="order__form-input_address" placeholder="Город/населенный пункт" formControlName="city">
+      <span class="error" *ngIf="formOrderEdit.controls['street'].invalid && formOrderEdit.controls['street'].touched">Поле для обязательного заполнения</span>
+      <input type="text" class="order__form-input_address" placeholder="Улица" formControlName="street">
+      <span class="error" *ngIf="formOrderEdit.controls['house'].invalid && formOrderEdit.controls['house'].touched">Поле для обязательного заполнения</span>
+      <input type="text" class="order__form-input_address" placeholder="Дом" formControlName="house">
+      <span class="error" *ngIf="formOrderEdit.controls['entrance'].invalid && formOrderEdit.controls['entrance'].touched">Неккоректный ввод. Введите число</span>
+      <input type="number" class="order__form-input_address" placeholder="Подъезд" formControlName="entrance">
+      <span class="error" *ngIf="formOrderEdit.controls['floor'].invalid && formOrderEdit.controls['floor'].touched">Неккоректный ввод. Введите число</span>
+      <input type="number" class="order__form-input_address" placeholder="Этаж" formControlName="floor">
+      <span class="error" *ngIf="formOrderEdit.controls['flat'].invalid && formOrderEdit.controls['flat'].touched">Неккоректный ввод. Введите число</span>
+      <input type="number" class="order__form-input_address" placeholder="Квартира" formControlName="flat">
+    </div>
+    <div class="order__form-wrapper">
+      <span class="order__form-title">Телефон:</span>
+      <span class="error" *ngIf="formOrderEdit.controls['phone'].invalid && formOrderEdit.controls['phone'].touched">Поле для обязательного заполнения</span>
+      <input type="tel" class="order__form-input-phone" formControlName="phone">
+      <span class="order__form-title">Время доставки:</span>
+      <span class="error" *ngIf="formOrderEdit.controls['date'].invalid && formOrderEdit.controls['date'].touched">Поле для обязательного заполнения</span>
+      <input type="datetime-local" class="order__form-input_datetime" formControlName="date">
+    </div>
+    <div class="order__form-wrapper">
+      <span class="order__form-title">Комментарий:</span>
+      <span class="error" *ngIf="formOrderEdit.controls['comment'].invalid && formOrderEdit.controls['comment'].touched">Максимальное количество символов: 250</span>
+      <textarea class="order__form-textarea_comment" cols="30" rows="10" formControlName="comment"></textarea>
+    </div>
+  </form>
+  <div class="order__cost-btn">
+    <button class="btn-confirm" form="order" (click)="clickOnSaveBtn()">Сохранить</button>
+  </div>
+</div>
+

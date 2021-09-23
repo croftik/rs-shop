@@ -56,5 +56,20 @@ export const initialState: IState = {
   cartItems: [],
   isLoginFormVisible: false,
   lengthOfData: 0,
-  countOfGoods: 0
-};
+  countOfGoods: 0,
+  editOrder: {
+    "items": [{
+      "id": '',
+      "amount": 0
+    }],
+    "details": {
+      "name": '',
+      "address": '',
+      "phone": '',
+      "timeToDeliver": '',
+      "comment": ''
+    },
+    "id": ''
+  },
+  editOrderId: ''
+}

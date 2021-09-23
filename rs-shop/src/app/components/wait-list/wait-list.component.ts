@@ -3,6 +3,7 @@ import { Store } from '@ngxs/store';
 import { IGoodItem } from 'src/app/models/goods.model';
 import { IItems, IOrder } from 'src/app/models/user.model';
 import { HttpService } from 'src/app/services/http/http.service';
+import { SetEditOrderId } from 'src/app/store/shop.actions';
 import Shop from 'src/app/store/shop.state';
 import { WaitList } from 'src/app/utils/enums';
 import { WaitListService } from './wait-list.service';
@@ -53,6 +54,11 @@ export class WaitListComponent implements OnInit {
 
   onClickDeleteOrderBtn(good: IOrder) {
     this.waitListService.deleteOrder(good.id);
+  }
+
+  onClickEditOrderBtn(good: IOrder) {
+    this.store.dispatch(new SetEditOrderId(good.id));
+    this.waitListService.navigateToEditOrderForm();
   }
 
 }

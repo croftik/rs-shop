@@ -1,6 +1,6 @@
 import { ICategories, ISubCategory } from "../models/categories.model";
 import { IGoodItem } from "../models/goods.model";
-import { IItems, IUser } from "../models/user.model";
+import { IItems, IOrder, IUser } from "../models/user.model";
 
 export interface IState {
   categories: ICategories[],
@@ -20,5 +20,7 @@ export interface IState {
   cartItems: IItems[],
   isLoginFormVisible: boolean,
   lengthOfData: number,
-  countOfGoods: number
+  countOfGoods: number,
+  editOrder: IOrder,
+  editOrderId: string
 }

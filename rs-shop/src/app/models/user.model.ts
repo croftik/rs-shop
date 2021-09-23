@@ -29,7 +29,7 @@ export interface IItems {
   "amount": number
 }
 
-interface IDetails {
+export interface IDetails {
   "name": string,
   "address": string,
   "phone": string,

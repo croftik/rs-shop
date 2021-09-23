@@ -1,6 +1,6 @@
 import { ICategories, ISubCategory } from "../models/categories.model";
 import { IGoodItem } from "../models/goods.model";
-import { IItems, IUser } from "../models/user.model";
+import { IItems, IOrder, IUser } from "../models/user.model";
 
 export class SetCategories {
   static readonly type = 'shop categories';
@@ -90,4 +90,14 @@ export class SetLengthOfGoods {
 export class SetСountOfGoods {
   static readonly type = 'shop count';
   constructor(public countOfGoods: number) {}
+}
+
+export class SetEditOrder {
+  static readonly type = 'shop edit order';
+  constructor(public editOrder: IOrder) {}
+}
+
+export class SetEditOrderId {
+  static readonly type = 'shop edit order id';
+  constructor(public editOrderId: string) {}
 }

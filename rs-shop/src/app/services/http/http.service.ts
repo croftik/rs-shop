@@ -60,4 +60,8 @@ export class HttpService {
     return this.http.post(`/users/order`, body, {responseType: 'text'});
   }
 
+  putOrder(body: any) {
+    return this.http.put(`/users/order`, body);
+  }
+
 }

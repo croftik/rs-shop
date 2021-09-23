@@ -30,6 +30,7 @@ import { HttpService } from './services/http/http.service';
 import { TokenInterceptor } from './services/interseptor/interceptor';
 import { SliderComponent } from './components/slider/slider.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OrderEditComponent } from './components/order-edit/order-edit.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PopularGoodsComponent,
     FavouritesComponent,
     WaitListComponent,
-    SliderComponent
+    SliderComponent,
+    OrderEditComponent
   ],
   imports: [
     BrowserModule,

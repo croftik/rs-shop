@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import { State, Action, StateContext, Selector } from "@ngxs/store";
 import { HttpService } from "../services/http/http.service";
-import { SetCatalog, SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetDetails, SetDirectionOfSort, SetGoodId, SetGoods, SetItemsInCart, SetLengthOfGoods, SetLoginFormVisible, SetQueryParam, SetSearchResults, SetSortingType, SetToken, SetTotalCost, SetUserInfo, SetСountOfGoods } from "./shop.actions";
+import { SetCatalog, SetCategories, SetCurrentCategory, SetCurrentSubCategory, SetDetails, SetDirectionOfSort, SetEditOrder, SetEditOrderId, SetGoodId, SetGoods, SetItemsInCart, SetLengthOfGoods, SetLoginFormVisible, SetQueryParam, SetSearchResults, SetSortingType, SetToken, SetTotalCost, SetUserInfo, SetСountOfGoods } from "./shop.actions";
 import { IState } from "./shop.model";
 import { ICategories, ISubCategory } from "../models/categories.model";
 import { IGoodItem } from "../models/goods.model";
 import { map, tap } from "rxjs/operators";
 import { initialState } from "../utils/utilities";
-import { IItems, IUser } from "../models/user.model";
+import { IItems, IOrder, IUser } from "../models/user.model";
 import { GoodService } from "../services/good/good.service";
 
 @State<IState>({
@@ -213,5 +213,31 @@ export default class Shop {
   @Selector()
   public static countOfGoods(state: IState): number {
     return state.countOfGoods;
+  }
+
+  @Action(SetEditOrder)
+  SetEditOrder(context: StateContext<IState>, action: SetEditOrder) {
+    context.patchState({ editOrder: action.editOrder });
+  }
+
+  @Selector()
+  public static editOrder(state: IState): IOrder {
+    return state.editOrder;
+  }
+
+  @Action(SetEditOrderId)
+  SetEditOrderId(context: StateContext<IState>, action: SetEditOrderId) {
+    context.patchState({ editOrderId: action.editOrderId });
+    return this.httpService.getUserInfo().pipe(
+      map((data:any) => {
+        const order = data.orders.filter((element:any) => element.id === action.editOrderId)[0];
+        context.dispatch(new SetEditOrder(order))
+      })
+    )
+  }
+
+  @Selector()
+  public static editOrderId(state: IState): string {
+    return state.editOrderId;
   }
 }

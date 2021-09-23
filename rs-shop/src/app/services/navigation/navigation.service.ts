@@ -14,6 +14,10 @@ export class NavigationService {
     this.router.navigate(['main']);
   }
 
+  navigateToEditOrder() {
+    this.router.navigate(['order/edit']);
+  }
+
   navigateToFavourites() {
     localStorage.getItem('user') ? this.router.navigate(['favourites']) : this.store.dispatch(new SetLoginFormVisible(true));
   }
