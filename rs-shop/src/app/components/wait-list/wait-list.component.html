@@ -13,8 +13,8 @@
         <img src="{{setSrc(item.id)}}" class="img-good">
         <div class="wrapper-block__info-good">
           <span class="title-good">{{setName(item.id)}}</span>
-          <span><b>Количество:</b> {{item.amount}} шт.</span>
-          <span><b>Стоимость:</b> {{setPrice(item.id,item.amount)}} p.</span>
+          <span><b>Количество: </b><em>{{item.amount}}</em> шт.</span>
+          <span><b>Стоимость: </b><em class="price_{{good.id}}">{{setPrice(item.id,item.amount) | formatPrice}}</em> p.</span>
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@
       <span>{{good.details.comment === '' ? 'отсутствует' : good.details.comment}}</span>
     </div>
     <div class="cost">
-      <strong>1234.55 p.</strong>
+      <strong>{{setTotalPrice(good.id)}} p.</strong>
     </div>
     <div class="action">
       <button class="btn-cancel" (click)="onClickDeleteOrderBtn(good)">Отменить заказ</button>

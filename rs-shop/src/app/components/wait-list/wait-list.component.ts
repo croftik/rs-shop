@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { IGoodItem } from 'src/app/models/goods.model';
 import { IItems, IOrder } from 'src/app/models/user.model';
@@ -13,7 +13,7 @@ import { WaitListService } from './wait-list.service';
   templateUrl: './wait-list.component.html',
   styleUrls: ['./wait-list.component.scss']
 })
-export class WaitListComponent implements OnInit {
+export class WaitListComponent implements OnInit, AfterViewChecked {
 
   waitList = WaitList;
 
@@ -21,7 +21,7 @@ export class WaitListComponent implements OnInit {
 
   items: Array<any> = [];
 
-  constructor(private store: Store, public waitListService: WaitListService, private httpService: HttpService) { }
+  constructor(private store: Store, public waitListService: WaitListService, private httpService: HttpService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.goodsInWaitList = this.store.selectSnapshot(Shop.userInfo).orders;
@@ -32,6 +32,10 @@ export class WaitListComponent implements OnInit {
         });
       });
     });
+  }
+
+  ngAfterViewChecked() {
+    this.cdr.detectChanges();
   }
 
   setName(id: string): string {
@@ -50,6 +54,15 @@ export class WaitListComponent implements OnInit {
     const item: IGoodItem = this.items.filter((items:IItems) => items.id === id)[0];
     if (item === undefined) return 0;
     return item.price*amount;
+  }
+
+  setTotalPrice(id: string) {
+    const allPrice = document.querySelectorAll(`.price_${id}`);
+    let totalPrice = 0;
+    allPrice.forEach(el => {
+      totalPrice += +<string>el.textContent;
+    });
+    return totalPrice.toFixed(2);
   }
 
   onClickDeleteOrderBtn(good: IOrder) {
