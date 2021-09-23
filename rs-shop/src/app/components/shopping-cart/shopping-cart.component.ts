@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { IGoodItem } from 'src/app/models/goods.model';
 import { IItems } from 'src/app/models/user.model';
@@ -40,21 +40,18 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit() {
     this.cart = this.store.selectSnapshot(Shop.userInfo).cart;
     for (let i = 0; i < this.cart.length; i++) {
-      this.items.push({
-        "id": this.cart[i],
-        "amount": 1
-      })
       this.httpService.getData(`goods/item/${this.cart[i]}`).subscribe((data:any) => {
         this.goods.push(data);
         this.totalCost += data.price;
+        this.totalCost = +this.totalCost.toFixed(2);
       })
     }
-    this.store.dispatch(new SetItemsInCart(this.items));
   }
 
   onClickDeleteBtn(good: IGoodItem) {
     this.shoppingCartService.deleteGoodFromCart(good.id);
-    this.totalCost = this.totalCost - good.price;
+    this.totalCost -= - good.price;
+    this.totalCost = +this.totalCost.toFixed(2);
   }
 
   onClickInFavourite(good: IGoodItem) {
@@ -64,27 +61,29 @@ export class ShoppingCartComponent implements OnInit {
   onClickPlusBtn(good: IGoodItem) {
     const element = <HTMLElement>document.getElementById(`quantity_${good.id}`);
     const price = <HTMLElement>document.getElementById(`price_${good.id}`);
-    this.totalCost += good.price; 
+    this.totalCost += good.price;
+    this.totalCost = +this.totalCost.toFixed(2);
     element.textContent = String(+<string>(element.textContent) + 1);
     price.textContent = String(good.price * (+element.textContent));
-    this.store.dispatch(new SetTotalCost(this.totalCost));
+    this.store.dispatch(new SetTotalCost(+(this.totalCost.toFixed(2))));
   }
 
   onClickMinusBtn(good: IGoodItem) {
     const element = <HTMLElement>document.getElementById(`quantity_${good.id}`);
     const price = <HTMLElement>document.getElementById(`price_${good.id}`);
     if (+<string>element.textContent !== 0) {
-      this.totalCost -= good.price; 
+      this.totalCost -= good.price;
+      this.totalCost = +this.totalCost.toFixed(2);
       element.textContent = String(+<string>(element.textContent) - 1);
       price.textContent = String(+<string>(price.textContent) - good.price);
     }
-    this.store.dispatch(new SetTotalCost(this.totalCost));
+    this.store.dispatch(new SetTotalCost(+(this.totalCost.toFixed(2))));
   }
 
   onClickConfirmBtn() {
     this.isOrderFormVisible = true;
     this.store.dispatch(new SetItemsInCart(this.items));
-    this.store.dispatch(new SetTotalCost(this.totalCost));
+    this.store.dispatch(new SetTotalCost(+(this.totalCost.toFixed(2))));
   }
 
 }
