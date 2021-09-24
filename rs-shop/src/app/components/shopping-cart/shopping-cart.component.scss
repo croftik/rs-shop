@@ -1,0 +1,176 @@
+.wrapper-shopping-cart {
+  width: 1200px;
+  margin: 20px auto;
+}
+
+.help {
+  display: flex;
+  flex-direction: column;
+  color: rgba(204, 100, 26, 0.864);
+  align-items: flex-end;
+}
+
+.help-phone {
+  font-size: 20px;
+}
+
+.table {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+  margin-top: 20px;
+}
+
+.ordering {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.list {
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid #000000;
+}
+
+.btn-delete,
+.btn-in-favourite,
+.btn-fav {
+  background-color: transparent;
+  border: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.btn-delete {
+  color: #000000;
+  margin-top: 5px;
+  &:hover {
+    color: red;
+  }
+}
+
+.btn-in-favourite {
+  color: rgb(190, 108, 0);
+  &:hover {
+    color:rgb(226, 192, 0);
+  }
+}
+
+.btn-fav {
+  color:rgb(226, 192, 0);
+}
+
+.img-good {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.table {
+  border-bottom: 1.5px dashed #000000;
+  padding-bottom: 15px;
+}
+
+.table-header {
+  font-size: 14px;
+}
+
+.total-cost {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.802);
+}
+
+.total-price {
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.title-good {
+  color: #e44a61;
+}
+
+.delivery-type {
+  margin-bottom: 10px;
+}
+
+.wrapper-block {
+  display: flex;
+}
+
+.block1, 
+.block2 {
+  display: flex;
+  flex-direction: column;
+}
+
+.block1 {
+  margin-right: 20px;
+}
+
+.block2 {
+  align-items: center;
+  padding-right: 15px;
+}
+
+.btn-quantity {
+  border: none;
+  width: 30px;
+  font-size: 27px;
+  font-weight: 700;
+  &:hover {
+    cursor: pointer;
+    background-color: #b9b9b9;
+  }
+}
+
+.quantity {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.wrapper-btn-quantity {
+  display: flex;
+  font-size: 17px;
+  font-weight: 700;
+  align-items: center;
+  height: 30px;
+}
+
+.price-good {
+  color: #e44a61;
+}
+
+.wrapper-cost {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.wrapper-delivery {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-checkout {
+  border: none;
+  padding: 9px 35px;
+  color: #ffffff;
+  background-color: #ffbe31;
+  border-radius: 5px;
+  &:hover {
+    background-color: #e8a006;
+  }
+}
+
+.wrapper-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.description-good {
+  max-width: 300px;
+  text-align: justify;
+}

@@ -1,0 +1,20 @@
+<main>
+  <div class="wrapper-goods">
+    <div class="wrapper-hierarchy">
+      <span class="hierarchy">Главная</span>
+      <img src="../../../assets/icons/down-arrow.png" class="img-hierarchy">
+      <span class="hierarchy">{{categoryName}}</span>
+      <img src="../../../assets/icons/down-arrow.png" class="img-hierarchy">
+      <span class="hierarchy">{{subCategory.name}}</span>
+    </div>
+    <span class="category-title">{{subCategory.name}}</span>
+    <ul class="wrapper-sorting">
+      <li class="wrapper-sorting_title">Сортировать по:</li>
+      <li id="rating" (click)="goodsService.setSortingSettingsInState($event)">популярности</li>
+      <li id="price" (click)="goodsService.setSortingSettingsInState($event)">цене</li>
+    </ul>
+    <app-one-good></app-one-good>
+  </div>
+</main>
+
+

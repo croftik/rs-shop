@@ -1,0 +1,17 @@
+<main class="main">
+  <h2 class="favourite">Избранные товары</h2>
+  <ul class="favourite__list">
+    <li class="favourite__item" *ngFor="let good of goods" id="{{good.id}}">
+      <div class="favourite__item_wrapper-img">
+        <img src="{{good.imageUrls[0]}}" class="favourite__item_img">
+      </div>
+      <div class="favourite__item_info">
+        <span class="favourite__item_name">{{good.name}}</span>
+        <span class="favourite__item_rating">{{good.rating | formatRating}}</span>
+        <span class="favourite__item_price">{{good.price | formatPrice}} p.</span>
+        <button class="btn-cart" (click)="onClickInCart(good)" [ngClass]="good.isInCart ? 'btn-in-cart' : 'btn-cart'">{{good.isInCart ? 'В корзине' : 'В корзину'}}</button>
+        <button class="btn-delete" (click)="onClickDeleteBtn(good)">Удалить из списка</button>
+      </div>
+    </li>
+  </ul>
+</main>

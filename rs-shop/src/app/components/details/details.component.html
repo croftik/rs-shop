@@ -1,0 +1,37 @@
+<main class="main">
+  <div class="wrapper-hierarchy">
+    <span class="hierarchy">Главная</span>
+    <img src="../../../assets/icons/down-arrow.png" class="img-hierarchy">
+    <span class="hierarchy">{{currentCategory}}</span>
+    <img src="../../../assets/icons/down-arrow.png" class="img-hierarchy">
+    <span class="hierarchy">{{currentSubCategory}}</span>
+  </div>
+  <span class="category-title">{{currentGood$.name}}</span>
+  <div class="wrapper-details">
+     <div class="wrapper-image">
+        <img src="../../../assets/icons/right-arrow.png" class="arrow_up" (click)="onClickUpBtn()">
+        <div class="wrapper-one-image " [ngClass]="i === index ? 'img_active':''" *ngFor="let image of currentGood$.imageUrls; index as i">
+          <img src="{{image}}" class="img-small" id="{{i}}">
+        </div>
+        <img src="../../../assets/icons/right-arrow.png" class="arrow_down" (click)="onClickDownBtn()">
+      </div>
+      <div class="wrapper-main-image">
+        <img src="{{mainImg}}">
+        <img src="../../../assets/icons/popular.png" class="popular-goods__img_label" *ngIf="currentGood$.rating === 5 ? true : false">
+      </div>
+    <div class="wrapper-description">
+      <span>Описание товара</span>
+      <p>{{currentGood$.description}}</p>
+    </div>
+    <div class="wrapper-info">
+      <div class="availability">
+        <img src="../../../assets/icons/have.png">
+        <span class="availability-good" [ngStyle]="{'color': goodService.setColor(currentGood$.availableAmount)}">В наличии</span>
+      </div>
+      <span class="price-good">{{currentGood$.price | formatPrice}} p.</span>
+      <span class="rating-good">{{currentGood$.rating | formatRating}}</span>
+      <button class="btn-cart" [ngClass]="currentGood$.isInCart ? 'btn-in-cart' : 'btn-cart'" (click)="onClickInCart(currentGood$)">{{currentGood$.isInCart ? 'В корзине' : 'В корзину'}}</button>
+      <button class="btn-favourite" [ngClass]="currentGood$.isFavorite ? 'btn-in-favourite' : 'btn-favourite'" (click)="onClickInFavourite(currentGood$)">{{currentGood$.isFavorite ? 'В избранном' : 'В избранное'}}</button>
+    </div>
+  </div>
+</main>

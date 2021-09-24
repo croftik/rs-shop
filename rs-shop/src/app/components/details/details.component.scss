@@ -1,0 +1,145 @@
+.main {
+  margin: 30px auto;
+  width: 1200px;
+}
+
+.wrapper-hierarchy {
+  display: flex;
+  font-size: 13px;
+  margin-bottom: 25px;
+}
+
+.hierarchy {
+  text-decoration: underline;
+}
+
+.img-hierarchy {
+  transform: rotate(-90deg);
+  width: 8px;
+  margin: 0 5px;
+}
+
+.category-title {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.availability-good {
+  font-size: 14px;
+}
+
+.price-good {
+  font-weight: 500;
+  font-size: 21px;
+}
+
+.rating-good {
+  font-size: 20px;
+}
+
+.btn-favourite,
+.btn-cart {
+  width: 100%;
+}
+
+.wrapper-info {
+  display: flex;
+  flex-direction: column;
+  width: 140px;
+  height: 200px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.img-small {
+  height: 50px;
+}
+
+.wrapper-image {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper-details {
+  display: flex;
+  margin-top: 30px;
+  justify-content: space-between;
+}
+
+.wrapper-images {
+  display: flex;
+}
+
+.wrapper-main-image {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  position: relative;
+  box-shadow: 0 2px 4px rgb(27 43 47 / 44%);
+}
+
+.wrapper-one-image {
+  border: 1px solid #d7d7d7;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgb(27 43 47 / 44%);
+}
+
+.wrapper-description {
+  max-width: 250px;
+  text-align: center;
+  span {
+    font-weight: 500;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  p {
+    text-align: justify;
+    margin-top: 5px;
+  }
+}
+
+.availability {
+  display: flex;
+  align-items: center;
+  img {
+    width: 13px;
+    margin-right: 5px;
+  }
+}
+
+.popular-goods__img_label {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.img_active {
+  box-shadow: 0 2px 4px rgb(255 24 0 / 69%);
+}
+
+.arrow_down,
+.arrow_up {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  &:hover {
+    cursor: pointer;
+    filter: drop-shadow(2px 4px 6px blue);
+  }
+}
+
+.arrow_down {
+  transform: rotate(90deg);
+}
+
+.arrow_up {
+  transform: rotate(-90deg);
+  margin-bottom: 10px;
+}

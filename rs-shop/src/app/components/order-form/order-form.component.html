@@ -1,0 +1,49 @@
+<div class="order">
+  <h4 class="order__title">Доставка</h4>
+  <form class="order__form" id="order" [formGroup]="formOrder">
+    <div class="order__form-wrapper">
+      <span class="order__form-title">ФИО:</span>
+      <span class="error" *ngIf="formOrder.controls['surname'].invalid">Поле для обязательного заполнения</span>
+      <input type="text" class="order__form-input_fio" placeholder="Фамилия" formControlName="surname">
+      <span class="error" *ngIf="formOrder.controls['name'].invalid">Поле для обязательного заполнения</span>
+      <input type="text" class="order__form-input_fio" placeholder="Имя" formControlName="name">
+      <span class="error" *ngIf="formOrder.controls['fathername'].invalid">Поле для обязательного заполнения</span>
+      <input type="text" class="order__form-input_fio" placeholder="Отчество" formControlName="fathername">
+    </div>
+    <div class="order__form-wrapper">
+      <span class="order__form-title">Адрес доставки:</span>
+      <span class="error" *ngIf="formOrder.controls['city'].invalid">Поле для обязательного заполнения</span>
+      <input type="text" class="order__form-input_address" placeholder="Город" formControlName="city">
+      <span class="error" *ngIf="formOrder.controls['street'].invalid">Поле для обязательного заполнения</span>
+      <input type="text" class="order__form-input_address" placeholder="Улица" formControlName="street">
+      <span class="error" *ngIf="formOrder.controls['house'].invalid">Поле для обязательного заполнения</span>
+      <input type="text" class="order__form-input_address" placeholder="Дом" formControlName="house">
+      <span class="error" *ngIf="formOrder.controls['entrance'].invalid">Неккоректный ввод. Введите положительное число</span>
+      <input type="number" class="order__form-input_address" placeholder="Подъезд" formControlName="entrance">
+      <span class="error" *ngIf="formOrder.controls['floor'].invalid">Неккоректный ввод. Введите положительное число</span>
+      <input type="number" class="order__form-input_address" placeholder="Этаж" formControlName="floor">
+      <span class="error" *ngIf="formOrder.controls['flat'].invalid">Неккоректный ввод. Введите положительное число</span>
+      <input type="number" class="order__form-input_address" placeholder="Квартира" formControlName="flat">
+    </div>
+    <div class="order__form-wrapper">
+      <span class="order__form-title">Телефон:</span>
+      <span class="error" *ngIf="formOrder.controls['phone'].invalid">Поле для обязательного заполнения</span>
+      <input type="tel" class="order__form-input-phone" formControlName="phone">
+      <span class="order__form-title">Время доставки:</span>
+      <span class="error" *ngIf="formOrder.controls['date'].invalid">Поле для обязательного заполнения</span>
+      <input type="datetime-local" class="order__form-input_datetime" formControlName="date">
+    </div>
+    <div class="order__form-wrapper">
+      <span class="order__form-title">Комментарий:</span>
+      <span class="error" *ngIf="formOrder.controls['comment'].invalid">Максимальное количество символов: 250</span>
+      <textarea class="order__form-textarea_comment" cols="30" rows="10" formControlName="comment"></textarea>
+    </div>
+  </form>
+  <div class="order__cost">
+    <span class="total-cost">К оплате: </span>
+    <span class="total-price">{{totalCost$ | async}} р.</span>
+  </div>
+  <div class="order__cost-btn">
+    <button class="btn-confirm" type="submit" form="order" (click)="onClickSubmitBtn()" [disabled]="!formOrder.valid">Подтвердить заказ</button>
+  </div>
+</div>

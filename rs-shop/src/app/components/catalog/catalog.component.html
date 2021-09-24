@@ -1,0 +1,19 @@
+<div class="wrapper-catalog">
+  <div class="categories-block1">
+    <ul class="categories-main">
+      <li *ngFor="let category of mainCategories$ | async" (mouseover)="catalogService.setNewCurrentCategory(category)" (click)="catalogService.showSubCategoriesInCategory(category)">
+        <img src="../../../assets/icons/{{category.id}}.png">
+        <span>{{category.name}}</span>
+      </li>
+    </ul>  
+  </div>
+  <div class="categories-block2">
+    <span class="categories-main-title">{{currentCategory.name}}</span>
+    <div class="categories-block3">
+      <ul >
+        <li class="list-of-categories" *ngFor="let subCategory of currentCategory.subCategories" (click)="catalogService.showAllGoodsInSubCategory(subCategory)">{{subCategory.name}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+

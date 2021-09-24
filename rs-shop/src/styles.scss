@@ -1,0 +1,91 @@
+@import '~bootstrap/scss/bootstrap';
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+li {
+  list-style-type: none;
+}
+
+ul {
+  margin-bottom: 0;
+}
+
+button,
+input {
+  outline: none;
+  font-size: 14px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+.btn-favourite,
+.btn-cart {
+  color: #FFFFFF;
+  width: 50%;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn-favourite {
+  background-color: #ffbe31;
+  &:hover {
+    background-color: #e8a006;
+  }
+}
+
+.btn-cart {
+  background-color: #f53d5d;
+  &:hover {
+    background-color: #e03653;
+  }
+}
+
+.btn-in-cart {
+  background-color: transparent;
+  border: 1px solid #e03653;
+  color: #e03653;
+  &:hover {
+    background-color: transparent;
+    text-decoration: underline;
+  }
+}
+
+.btn-in-favourite {
+  background-color: transparent;
+  border: 1px solid #e8a006;
+  color: #e8a006;
+  &:hover {
+    background-color: transparent;
+    text-decoration: underline;
+  }
+}
+
+.visually-hidden {
+  display: none;
+}
+
+.carousel-indicators li {
+  background-color: black;
+}
+
+a {
+  color: black;
+}
+
+h1 {
+  font-weight: 700;
+}

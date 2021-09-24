@@ -1,0 +1,11 @@
+<main class="main">
+  <div class="wrapper-categories">
+    <span class="hierarchy">Главная</span>
+    <span class="name-category">{{category.name}}</span>
+    <div class="wrapper-block-categories">
+      <div class="category" *ngFor="let subCategory of subCategories" (click)="catalogService.showAllGoodsInSubCategory(subCategory)">
+        <span>{{subCategory.name}}</span>
+      </div>
+    </div>
+  </div>
+</main>

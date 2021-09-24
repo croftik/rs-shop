@@ -1,0 +1,54 @@
+<main>
+  <div class="wrapper-shopping-cart">
+    <div class="help">
+      <span>Помощь в оформлении:</span>
+      <span class="help-phone">+375 29 339-98-05</span>
+    </div>
+    <h2 class="ordering">Оформление заказа</h2>
+    <h4 class="list">Список товаров</h4>
+    <div class="table">
+      <span class="table-header">{{tableHeader.Good}}</span>
+      <span class="table-header">{{tableHeader.Description}}</span>
+      <span class="table-header">{{tableHeader.Quantity}}</span>
+      <span class="table-header">{{tableHeader.Delivery}}</span>
+      <span class="table-header">{{tableHeader.Cost}}, p.</span>        
+    </div>
+    <div class="table" *ngFor="let good of goods" id="{{good.id}}">
+      <div class="wrapper-block" >
+        <div class="block1">
+          <img src="{{good.imageUrls[0]}}" class="img-good">
+          <button class="btn-delete" (click)="onClickDeleteBtn(good)">удалить</button>
+        </div>
+        <div class="block2">
+          <span class="title-good">{{good.name}}</span>
+          <button [ngClass]="good.isFavorite ? 'btn-in-favourite' : 'btn-fav'" (click)="onClickInFavourite(good)">{{good.isFavorite ? '★ В избранном' : '☆ Добавить в избранное'}}</button>
+        </div>
+      </div>
+  
+      <span class="description-good" >{{good.description}}</span>
+  
+      <div class="wrapper-btn-quantity">
+        <button class="btn-quantity" (click)="onClickMinusBtn(good)">-</button>
+        <span class="quantity" id="quantity_{{good.id}}">1</span>
+        <button class="btn-quantity" (click)="onClickPlusBtn(good)">+</button>
+      </div>
+  
+      <div class="wrapper-delivery">
+        <span class="delivery-type">Курьером: сегодня</span>
+        <span class="delivery-type">Самовызов: сегодня</span>
+      </div>
+      
+      <span class="price-good" id="price_{{good.id}}">{{good.price | formatPrice}}</span>
+      
+    </div>
+
+    <div class="wrapper-cost">
+      <span class="total-cost">Общая стоимость:</span>
+      <span class="total-price">{{totalCost | formatPrice}} p.</span>
+    </div>
+    <div class="wrapper-btn">
+      <button class="btn-checkout" (click)="onClickConfirmBtn()">Оформить заказ</button>
+    </div> 
+  </div>
+  <app-order-form *ngIf="isOrderFormVisible"></app-order-form>
+</main>

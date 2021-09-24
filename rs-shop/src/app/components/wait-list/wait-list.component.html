@@ -1,0 +1,38 @@
+<main class="main">
+  <h2 class="wait-list">Лист ожидания</h2>
+  <div class="table">
+    <span class="table-header">{{waitList.Good}}</span>
+    <span class="table-header">{{waitList.Info}}</span>
+    <span class="table-header">{{waitList.Comment}}</span>
+    <span class="table-header">{{waitList.Cost}}</span>
+    <span class="table-header">{{waitList.Action}}</span>
+  </div>
+  <div class="table" *ngFor="let good of goodsInWaitList" id="{{good.id}}">
+    <div class="wrapper-block">
+      <div class="wrapper-block__order-item" *ngFor="let item of good.items">
+        <img src="{{setSrc(item.id)}}" class="img-good">
+        <div class="wrapper-block__info-good">
+          <span class="title-good">{{setName(item.id)}}</span>
+          <span><b>Количество: </b><em>{{item.amount}}</em> шт.</span>
+          <span><b>Стоимость: </b><em class="price_{{good.id}}">{{setPrice(item.id,item.amount) | formatPrice}}</em> p.</span>
+        </div>
+      </div>
+    </div>
+    <div class="recipient">
+      <span class="recipient__item"><b>Заказчик: </b>{{good.details.name}}</span>
+      <span class="recipient__item"><b>Адрес доставки: </b>{{good.details.address}}</span>
+      <span class="recipient__item"><b>Контактный номер: </b>{{good.details.phone}}</span>
+      <span class="recipient__item"><b>Время доставки: </b>{{good.details.timeToDeliver | date:"dd/MM/yyyy hh:mm a"}}</span>
+    </div>
+    <div class="comment">
+      <span>{{good.details.comment === '' ? 'отсутствует' : good.details.comment}}</span>
+    </div>
+    <div class="cost">
+      <strong>{{setTotalPrice(good.id)}} p.</strong>
+    </div>
+    <div class="action">
+      <button class="btn-cancel" (click)="onClickDeleteOrderBtn(good)">Отменить заказ</button>
+      <button class="btn-edit" (click)="onClickEditOrderBtn(good)">Редактировать заказ</button>
+    </div>
+  </div>
+</main>

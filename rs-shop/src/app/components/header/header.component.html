@@ -1,0 +1,82 @@
+<header class="header">
+  <div class="header_wrapper">
+    <app-header-contacts></app-header-contacts> 
+    <div class="search-block">
+      <div class="logo-block" (click)="onClickLogo()">
+        <img src="../../../assets/icons/logo.png" class="img_logo">
+        <h1 data-name="Online Shopping">Online Shopping</h1>
+      </div>
+      
+      <button class="header__btn search-block_btn" (click)="showCatalog()">
+        <img src="../../../assets/icons/list.png" class="img_icon-btn">
+        Каталог товаров
+      </button>
+      
+      <form class="form_search" [formGroup]="formForSearchGoods">
+        <img src="../../../assets/icons/search.png" class="img_icon-input">
+        <input placeholder="Поиск товаров" class="input_search" formControlName="searchInput">
+      </form>
+      
+      <app-search-goods *ngIf="isSearchResults"></app-search-goods>
+      
+      <button class="header__btn search-block_btn" (click)="headerService.showAccountInfo()" [@accountBlock]="headerService.stateAccount">
+        <img *ngIf="!headerService.isUserLogged" src="../../../assets/icons/sign-in.png" class="img_icon-btn">
+        <svg *ngIf="headerService.isUserLogged" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class=""><path fill="currentColor" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" d="M14.9 7.25C14.9 8.71355 13.7136 9.9 12.25 9.9C10.7865 9.9 9.60001 8.71355 9.60001 7.25C9.60001 5.78645 10.7865 4.6 12.25 4.6C13.7136 4.6 14.9 5.78645 14.9 7.25ZM14.888 10.5824C15.8701 9.80391 16.5 8.60052 16.5 7.25C16.5 4.90279 14.5972 3 12.25 3C9.9028 3 8.00001 4.90279 8.00001 7.25C8.00001 8.60051 8.62993 9.8039 9.61198 10.5824C7.47858 11.5771 6 13.7409 6 16.25V18C6 18.2761 6.22386 18.5 6.5 18.5H18C18.2761 18.5 18.5 18.2761 18.5 18V16.25C18.5 13.7409 17.0214 11.5771 14.888 10.5824ZM16.9 16.25V16.9H7.6V16.25C7.6 13.6819 9.68188 11.6 12.25 11.6C14.8181 11.6 16.9 13.6819 16.9 16.25Z"></path></svg>
+        Аккаунт
+        <img src="../../../assets/icons/down-arrow.png" class="img_arrow" [@arrowAccount]="headerService.stateAccount">
+      </button>
+
+      <div class="account-block" *ngIf="headerService.isExpandedAccount" >
+        <div class="user"></div>
+        <button class="account-block_btn" (click)="headerService.showLoginForm()" *ngIf="!headerService.isUserLogged">Войти</button>
+        <button class="account-block_btn" (click)="headerService.signOut()" *ngIf="headerService.isUserLogged">Выйти</button>
+        <ul class="account-block_more">
+          <li class="account-block_more__list" (click)="onClickCart()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.7671 13.5526C15.4184 13.5526 15.9916 13.1966 16.2868 12.6582L19.1266 7.02211C19.4479 6.44895 19.0311 5.73684 18.3711 5.73684H6.65605L5.83974 4H2.86842C2.38881 4 2 4.38881 2 4.86842C2 5.34804 2.38881 5.73684 2.86842 5.73684H4.73684L7.86316 12.3282L6.90789 13.9868C6.27395 15.1505 6.89053 16.1579 8.21053 16.1579H16.8947C17.3744 16.1579 17.7632 15.7691 17.7632 15.2895C17.7632 14.8099 17.3744 14.4211 16.8947 14.4211H8.64474L9.16579 13.5526H14.7671ZM7.48105 7.47368H16.8947L14.7671 11.8158H9.53921L7.48105 7.47368ZM11.25 18.9803C11.25 19.8196 10.5696 20.5 9.73024 20.5C8.89092 20.5 8.21051 19.8196 8.21051 18.9803C8.21051 18.1409 8.89092 17.4605 9.73024 17.4605C10.5696 17.4605 11.25 18.1409 11.25 18.9803ZM14.9408 20.5C15.7801 20.5 16.4605 19.8196 16.4605 18.9803C16.4605 18.1409 15.7801 17.4605 14.9408 17.4605C14.1014 17.4605 13.421 18.1409 13.421 18.9803C13.421 19.8196 14.1014 20.5 14.9408 20.5Z"></path></svg>
+            <span>{{accountInfo.ShoppingCart}}</span>
+            <div class="count-of-goods" *ngIf="(numberOfGoodsInShoppingCart === 0) ? false : true">
+              <span class="count-of-goods_number">{{numberOfGoodsInShoppingCart}}</span>
+            </div>
+          <li class="account-block_more__list" (click)="onClickFavourites()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.53785 7.66601C6.07776 8.21811 5.8002 8.96099 5.8002 9.69232C5.8002 10.0297 5.9527 10.4875 6.32629 11.0805C6.69275 11.6623 7.22346 12.2988 7.86581 12.9779C8.6637 13.8213 9.56378 14.6615 10.4704 15.5077C10.9577 15.9627 11.447 16.4194 11.9233 16.8793C12.3995 16.4194 12.8888 15.9627 13.3762 15.5077C14.2828 14.6615 15.1828 13.8213 15.9807 12.9779C16.6231 12.2988 17.1538 11.6623 17.5203 11.0805C17.8938 10.4875 18.0463 10.0297 18.0463 9.69232C18.0463 8.96099 17.7688 8.21811 17.3087 7.66601C16.8521 7.11804 16.2558 6.80001 15.6156 6.80001C14.1212 6.80001 13.4036 7.49718 12.489 8.41185C12.3389 8.56188 12.1354 8.64617 11.9233 8.64617C11.7111 8.64617 11.5076 8.56188 11.3576 8.41185C10.4429 7.49718 9.72537 6.80001 8.23096 6.80001C7.59075 6.80001 6.99448 7.11804 6.53785 7.66601ZM5.30869 6.64171C6.00591 5.80506 7.02502 5.20001 8.23096 5.20001C10.006 5.20001 11.0837 5.94944 11.9233 6.72847C12.7629 5.94944 13.8405 5.20001 15.6156 5.20001C16.8215 5.20001 17.8406 5.80506 18.5378 6.64171C19.2316 7.47422 19.6463 8.5775 19.6463 9.69232C19.6463 10.4699 19.314 11.2349 18.874 11.9333C18.427 12.643 17.8154 13.3666 17.1431 14.0774C16.3229 14.9444 15.3425 15.8608 14.4003 16.7414C13.8269 17.2773 13.2677 17.7999 12.7673 18.2902C12.2985 18.7496 11.548 18.7496 11.0792 18.2902C10.5788 17.7999 10.0196 17.2773 9.44626 16.7414C8.50408 15.8608 7.52368 14.9444 6.70347 14.0774C6.03109 13.3666 5.41958 12.643 4.97251 11.9333C4.53255 11.2349 4.2002 10.4699 4.2002 9.69232C4.2002 8.5775 4.61494 7.47422 5.30869 6.64171Z"></path></svg>
+            <span>{{accountInfo.Favourite}}</span>
+            <div class="count-of-goods" *ngIf="(numberOfFavourites === 0) ? false : true">
+              <span class="count-of-goods_number">{{numberOfFavourites}}</span>
+            </div>
+          </li>
+          <li class="account-block_more__list" (click)="onClickWaitList()">
+            <svg class="ProfileItem_icon__3Gmbu" width="24" height="24" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.86393 4C7.83451 4 7 4.83451 7 5.86392V7.39289C7 7.92333 7.21071 8.43203 7.58579 8.80711L10.5287 11.75L7.58579 14.6929C7.21071 15.068 7 15.5767 7 16.1071V17.6361C7 18.6655 7.83451 19.5 8.86392 19.5H15.404C16.4334 19.5 17.2679 18.6655 17.2679 17.6361V16.1071C17.2679 15.5767 17.0572 15.068 16.6821 14.6929L13.7393 11.75L16.6821 8.80711C17.0572 8.43203 17.2679 7.92333 17.2679 7.39289V5.86392C17.2679 4.83451 16.4334 4 15.404 4H8.86393ZM8.54782 5.54782H15.7201V7.86658L12.5 11.0867V12.4133L15.7201 15.6334V18.0503L12.134 15.3607L8.54782 18.0503V15.6334L11.5 12.4133V11.0867L8.54782 7.86658V5.54782Z"></path></svg>
+            <span>{{accountInfo.List}}</span>
+            <div class="count-of-goods" *ngIf="(numberOfGoodsInWaitingList === 0) ? false : true">
+              <span class="count-of-goods_number">{{numberOfGoodsInWaitingList}}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <button class="header__btn search-block_btn" (click)="onClickCart()">
+        <img src="../../../assets/icons/shopping-cart.png" class="img_icon-btn">
+        <div class="count-of-goods goods-in-sc" *ngIf="(numberOfGoodsInShoppingCart === 0) ? false : true">
+          <span class="count-of-goods_number number-in-sc">{{numberOfGoodsInShoppingCart}}</span>
+        </div>
+        <span>{{accountInfo.ShoppingCart}}</span>
+      </button>
+
+    </div>
+  </div>
+
+  <div class="main-categories-block">
+    <div class="main-categories-block_wrapper">
+      <ul *ngFor="let category of mainCategories$ | async">
+        <li (click)="catalogService.showSubCategoriesInCategory(category)">{{category.name}}</li>
+      </ul>
+    </div>
+  </div>
+  
+  <app-catalog *ngIf="isCatalogBtnPressed"></app-catalog>
+  <app-login-form *ngIf="headerService.isLoginFormVisible$ | async"></app-login-form>
+</header>
+
+
+
+
