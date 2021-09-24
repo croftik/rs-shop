@@ -32,6 +32,7 @@ import { SliderComponent } from './components/slider/slider.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OrderEditComponent } from './components/order-edit/order-edit.component';
 import { MainComponent } from './components/main/main.component';
+import { HeaderContactsComponent } from './components/header-contacts/header-contacts.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { MainComponent } from './components/main/main.component';
     WaitListComponent,
     SliderComponent,
     OrderEditComponent,
-    MainComponent
+    MainComponent,
+    HeaderContactsComponent
   ],
   imports: [
     BrowserModule,

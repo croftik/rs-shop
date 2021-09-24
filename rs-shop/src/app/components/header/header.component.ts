@@ -20,22 +20,6 @@ import { HeaderService } from './header.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   animations: [
-    trigger('paymentBlock', [
-      state('initialPayment', style({ filter: 'opacity(1)' })),
-      state('expandedPayment', style({ filter: 'opacity(0.5)' })),
-    ]),
-    trigger('arrowPayment', [
-      state('initialPayment', style({ transform: '0' })),
-      state('expandedPayment', style({ transform: 'rotateX(180deg)' })),
-    ]),
-    trigger('contactsBlock', [
-      state('initialContacts', style({ filter: 'opacity(1)' })),
-      state('expandedContacts', style({ filter: 'opacity(0.5)' })),
-    ]),
-    trigger('arrowContacts', [
-      state('initialContacts', style({ transform: '0' })),
-      state('expandedContacts', style({ transform: 'rotateX(180deg)' })),
-    ]),
     trigger('accountBlock', [
       state('initialAccount', style({ filter: 'opacity(1)' })),
       state('expandedAccount', style({ filter: 'opacity(0.5)' })),
@@ -52,10 +36,6 @@ import { HeaderService } from './header.service';
 })
 export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
   mainCategories$: Observable<ICategories[]>;
-
-  payment = Payment;
-
-  contacts: IContacts[];
 
   accountInfo = AccountInfo;
 
@@ -80,7 +60,6 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
     public catalogService: CatalogService, 
     public navService: NavigationService
   ) {
-    this.contacts = contacts;
   }
 
   ngOnInit() {
