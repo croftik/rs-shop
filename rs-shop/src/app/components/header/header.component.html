@@ -59,10 +59,10 @@
       
       <form class="form_search" [formGroup]="formForSearchGoods">
         <img src="../../../assets/icons/search.png" class="img_icon-input">
-        <input placeholder="Поиск товаров" class="input_search" formControlName="searchInput" type="search">
+        <input placeholder="Поиск товаров" class="input_search" formControlName="searchInput">
       </form>
       
-      <app-search-goods></app-search-goods>
+      <app-search-goods *ngIf="isSearchResults"></app-search-goods>
       
       <button class="header__btn search-block_btn" (click)="headerService.showAccountInfo()" [@accountBlock]="headerService.stateAccount">
         <img *ngIf="!headerService.isUserLogged" src="../../../assets/icons/sign-in.png" class="img_icon-btn">

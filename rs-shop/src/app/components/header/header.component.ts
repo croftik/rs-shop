@@ -71,6 +71,8 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
 
   private unsubscribe$ = new Subject();
 
+  isSearchResults: boolean;
+
   constructor(
     public headerService: HeaderService, 
     public goodService: GoodService, 
@@ -96,8 +98,13 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
       takeUntil(this.unsubscribe$),
     )
       .subscribe((value: string) => {
-        if (value.length >= 2) this.headerService.searchGoods(value);
+        if (value.length === 0) this.isSearchResults = false;
+        if (value.length >= 2) {
+          this.isSearchResults = true;
+          this.headerService.searchGoods(value);
+        }
       });
+    this.isSearchResults = false;
   }
 
   showCatalog() {
